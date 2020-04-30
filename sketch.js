@@ -4,7 +4,6 @@ let isboxPress= false;
 let isboxSolved= false;
 let isPlantClicked= false;
 let backButton= false;
-
 let morseCode;
 
 
@@ -18,7 +17,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background('#252B42');
     
-    morseCode= createAudio('images/morse code.wav');
+    morseCode= createAudio('images/Escape theme one.wav');
     morseCode.loop();
     
     room1.loadPixels();
