@@ -30,7 +30,7 @@ function preload(){
     finishPuzzle= loadImage('Images/Solved box.jpg');
     emptyBox= loadImage('Images/open box.jpg');
 
-    room2= loadImage('Images/Hallway.png');
+    room2= loadImage('Images/working-hallway1.jpg');
 }
 
 function setup() {
