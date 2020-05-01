@@ -196,6 +196,7 @@ function mousePressed(){
             if(mouseX>=790 && mouseX<=870 && mouseY>=380 && mouseY<=430){
                 keyTaken=true;
                 alert("Great, let's see what's outside!");
+                alert("Oh God, what a mess!");
             }
         }
 }
