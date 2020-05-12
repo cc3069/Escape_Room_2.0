@@ -259,7 +259,7 @@ translate(730,500);
     //h:(windowHeight/2)-275
 function changeCursor(){
 
-    //windowWidth/2)-350, (windowHeight/2)-275
+    //(windowWidth/2)-350, (windowHeight/2)-275
     //413, 157
     //width: 1526
     //height: 864
@@ -287,15 +287,15 @@ function changeCursor(){
             cursor(HAND);
             }
 
-        else if(mouseX>=650 && mouseX<=700 && mouseY>=250 && mouseY<=390){
-            cursor(HAND);
+//rect(650,250,50,140); plant
+//rect(750,230,120,65); map
+//rect(485,260,35,15); box
 
-            if((mouseX>=430 && mouseX<=464 && mouseY>=116 && mouseY<=189) ||(mouseX>=464 && mouseX<=540 && mouseY>=143 && mouseY<=162)){
-                cursor(HAND);
-            }
+        else if(mouseX>=(windowWidth/2)-113 && mouseX<=(windowWidth/2)-63 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+10){
+            cursor(HAND);
         }
     
-        else if(mouseX>=750 && mouseX<=870 && mouseY>=230 && mouseY<=295){
+        else if(mouseX>=(windowWidth/2)-13 && mouseX<=(windowWidth/2)-107 && mouseY>=(windowHeight/2)-202 && mouseY<=(windowHeight/2)-137){
             cursor(HAND);
         }
     
