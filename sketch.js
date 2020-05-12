@@ -281,9 +281,9 @@ function changeCursor(){
             ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20 //top left
             ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20 //top right
     
-            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+30 && mouseY<=(windowHeight/2)+30 //bottom left
-            ||mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+30 && mouseY<=(windowHeight/2)+30 //bottom center
-            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+30 && mouseY<=(windowHeight/2)+30) { //bottom right
+            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+50 //bottom left
+            ||mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+50 //bottom center
+            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+50) { //bottom right
             cursor(HAND);
             }
 
