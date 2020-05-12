@@ -1,5 +1,5 @@
-let inRoom1= true;
-let inRoom2= false;
+let inRoom1= false;
+let inRoom2= true;
 let inRoom3= false;
 
 //room 1
@@ -307,7 +307,7 @@ function changeCursor(){
     }
 
     else if(inRoom2){
-        if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
+        if((mouseX>=(windowWidth/2)+155 && mouseX<=(windowWidth/2)+300 && mouseY>= (windowHeight/2)+165 && mouseY<=(windowHeight/2)+185) ||(mouseX>=(windowWidth/2)+300 && mouseX<=(windowWidth/2)+380 && mouseY>=(windowHeight/2)+185 && mouseY<=(windowHeight/2)+230)){
             cursor(HAND);
         }
 
