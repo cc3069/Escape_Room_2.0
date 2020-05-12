@@ -12,6 +12,7 @@ let keyTaken= false;
 let isPlantClicked= false;
 let backButton= false;
 let morseCode;
+let timesLeft=0;
 
 //box puzzle
  let clicks1=0;
@@ -124,7 +125,7 @@ function draw() {
 }
 
 function mousePressed(){
-  if(inRoom1==true){
+  if(inRoom1){
         if(puzzleDone==false){
             if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
                 alert("Locked!");
@@ -132,9 +133,15 @@ function mousePressed(){
         }
          else if(puzzleDone==true){
             if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
-                
-                inRoom2=true;
                 inRoom1=false;
+                inRoom2=true;
+                
+                timesLeft++;
+
+                if(timesLeft==1){
+                    alert("Oh God, what a mess!");
+                }
+               
             }
         }
     
@@ -191,17 +198,16 @@ function mousePressed(){
                     }
                 } 
         }
-        if(puzzleDone==true){
+        if(puzzleDone){
             //rect(790,380,80,50);
             if(mouseX>=790 && mouseX<=870 && mouseY>=380 && mouseY<=430){
                 keyTaken=true;
                 alert("Great, let's see what's outside!");
-                alert("Oh God, what a mess!");
             }
         }
 }
 
-else if(inRoom2==true){
+else if(inRoom2){
     if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
         inRoom1=true;
         inRoom2= false;
@@ -246,7 +252,7 @@ translate(730,500);
 
 
 function changeCursor(){
-    if(inRoom1==true){
+    if(inRoom1){
 
        if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
             cursor(HAND);
@@ -283,7 +289,7 @@ function changeCursor(){
         }
     }
 
-    else if(inRoom2==true){
+    else if(inRoom2){
         if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
             cursor(HAND);
         }
