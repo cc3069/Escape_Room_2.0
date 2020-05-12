@@ -42,7 +42,7 @@ function setup() {
     print(screen.height); //864px
 
     morseCode= createAudio('images/Escape theme one.wav');
-    morseCode.loop();
+    //morseCode.loop();
     
     room1.loadPixels();
     paper.loadPixels();
@@ -266,13 +266,20 @@ function changeCursor(){
 
     if(inRoom1){
 //80x170
-       if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-69 && mouseY<=(windowHeight/2)+101){
+       if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
             cursor(HAND);
         }
+            //rect(457,310,35,10); 
+            //rect(505,310,35,10);
+            //rect(555,310,35,10); 
 
-        else if(mouseX>=755 && mouseX<=790 && mouseY>=390 && mouseY<=400 //top center
-            ||mouseX>=707 && mouseX<=742 && mouseY>=390 && mouseY<=400 //top left
-            ||mouseX>=805 && mouseX<=840 && mouseY>=390 && mouseY<=400 //top right
+            //rect(457,350,35,10);
+            //rect(505,350,35,10);
+            //rect(555,350,35,10);
+
+        else if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)-142 && mouseY<=(windowHeight/2)+100//top center
+            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-142&& mouseY<=(windowHeight/2)+100 //top left
+            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-142 && mouseY<=(windowHeight/2)+100 //top right
     
             ||mouseX>=707 && mouseX<=840 && mouseY>=430 && mouseY<=440 //bottom left
             ||mouseX>=755 && mouseX<=840 && mouseY>=430 && mouseY<=440 //bottom center
