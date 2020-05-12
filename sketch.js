@@ -42,7 +42,7 @@ function setup() {
     print(screen.height); //864px
 
     morseCode= createAudio('images/Escape theme one.wav');
-    morseCode.loop();
+    //morseCode.loop();
     
     room1.loadPixels();
     paper.loadPixels();
@@ -51,7 +51,6 @@ function setup() {
     finishPuzzle.loadPixels();
     room2.loadPixels();
     emptyBox.loadPixels();
-   
 }
 
 function draw() {
@@ -105,7 +104,7 @@ function draw() {
             image(map,(windowWidth/2)-225, (windowHeight/2)-125, 450, 250);
             arrow();
         }
-    }
+        }
 
     else if(inRoom2==true){
         image(room2, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
@@ -147,7 +146,7 @@ function mousePressed(){
                
             }
         }
-    
+        
         if(mouseX>=650 && mouseX<=700 && mouseY>=250 && mouseY<=390){
             alert("There's a piece of paper here");
             isPlantClicked= true;
@@ -253,7 +252,11 @@ translate(730,500);
   endShape();
 }
 
-
+    //rect(650,250,50,140); plant
+    //rect(750,230,120,65); map
+    //rect(485,260,35,15); box
+    //x:(windowWidth/2)-350
+    //h:(windowHeight/2)-275
 function changeCursor(){
 
     //(windowWidth/2)-350, (windowHeight/2)-275
@@ -266,10 +269,17 @@ function changeCursor(){
        if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
             cursor(HAND);
         }
+            //rect(457,310,35,10); 
+            //rect(505,310,35,10);
+            //rect(555,310,35,10); 
 
-        else if(mouseX>=755 && mouseX<=790 && mouseY>=390 && mouseY<=400 //top center
-            ||mouseX>=707 && mouseX<=742 && mouseY>=390 && mouseY<=400 //top left
-            ||mouseX>=805 && mouseX<=840 && mouseY>=390 && mouseY<=400 //top right
+            //rect(457,350,35,10);
+            //rect(505,350,35,10);
+            //rect(555,350,35,10);
+
+        else if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)-142 && mouseY<=(windowHeight/2)+100//top center
+            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-142&& mouseY<=(windowHeight/2)+100 //top left
+            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-142 && mouseY<=(windowHeight/2)+100 //top right
     
             ||mouseX>=707 && mouseX<=840 && mouseY>=430 && mouseY<=440 //bottom left
             ||mouseX>=755 && mouseX<=840 && mouseY>=430 && mouseY<=440 //bottom center
