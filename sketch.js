@@ -72,7 +72,9 @@ function draw() {
 
         if(isBoxSolved==true){
             isBoxPress=false;
+            
             image(finishPuzzle,(windowWidth/2)-225, (windowHeight/2)-125, 450, 250);
+           
          
         if(keyTaken==true){
             image(emptyBox,(windowWidth/2)-225, (windowHeight/2)-125, 450, 250);
@@ -83,8 +85,7 @@ function draw() {
 
         if(isBoxPress==true){
             image(puzzle,(windowWidth/2)-250, (windowHeight/2)-200, 500, 400);
-        //windowWidth:1526
-    //windowHeight:864
+  
             fill('red');
             text(input[clicks1],(windowWidth/2)-48,(windowHeight/2)+43);
             text(input[clicks2],(windowWidth/2)+2,(windowHeight/2)+43);
@@ -206,8 +207,8 @@ function mousePressed(){
                 } 
         }
         if(puzzleDone){
-            //rect(790,380,80,50);
-            if(mouseX>=790 && mouseX<=870 && mouseY>=380 && mouseY<=430){
+             //rect((windowWidth/2),(windowHeight/2)-10,80,50);
+            if(mouseX>=(windowWidth/2) && mouseX<=(windowWidth/2)+80 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+40){
                 keyTaken=true;
                 alert("Great, let's see what's outside!");
             }
