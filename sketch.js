@@ -281,26 +281,23 @@ function changeCursor(){
             ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20 //top left
             ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20 //top right
     
-            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+50 //bottom left
-            ||mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+50 //bottom center
-            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+50) { //bottom right
+            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55 //bottom left
+            ||mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55 //bottom center
+            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55) { //bottom right
             cursor(HAND);
             }
-
-//rect(650,250,50,140); plant
 //rect(750,230,120,65); map
-//rect(485,260,35,15); box
 
         else if(mouseX>=(windowWidth/2)-113 && mouseX<=(windowWidth/2)-63 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+10){
             cursor(HAND);
         }
     
-        else if(mouseX>=(windowWidth/2)-13 && mouseX<=(windowWidth/2)-107 && mouseY>=(windowHeight/2)-202 && mouseY<=(windowHeight/2)-137){
+        else if(mouseX>=(windowWidth/2)+150 && mouseX<=(windowWidth/2)+107 && mouseY>=(windowHeight/2)-202 && mouseY<=(windowHeight/2)-137){
             cursor(HAND);
         }
     
-        else if(mouseX>=485 && mouseX<=520 && mouseY>=260 && mouseY<=275){
-            cursor(HAND);
+        else if(mouseX>=(windowWidth/2)-278 && mouseX<=(windowWidth/2)-243 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-105){
+           cursor(HAND);
         }
     
         else{
