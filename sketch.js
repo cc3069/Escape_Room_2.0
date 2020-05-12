@@ -1,12 +1,12 @@
+<<<<<<< HEAD
 let button;
 
 
+=======
+>>>>>>> 23885423e7252321f36e83f53ea40d5fcbb59f01
 let inRoom1= true;
 let inRoom2= false;
 let inRoom3= false;
-
-//entrance
-let isGrandDoorClicked= false;
 
 //room 1
 let isMapPress= false;
@@ -18,6 +18,7 @@ let keyTaken= false;
 let isPlantClicked= false;
 let backButton= false;
 let morseCode;
+let timesLeft=0;
 
 //box puzzle
  let clicks1=0;
@@ -29,18 +30,19 @@ let morseCode;
  let hotelArrow=false;
 
 function preload(){
-    entrance=loadImage('Images/hotel entrance.png');
     room1= loadImage('Images/hotel bedroom.jpg');
     paper= loadImage('Images/Morse code reference.jpg');
     map= loadImage('Images/edited map.jpg');
     puzzle= loadImage('Images/Box puzzle unsolved.jpg');
     finishPuzzle= loadImage('Images/Solved box.jpg');
     emptyBox= loadImage('Images/open box.jpg');
+
     room2= loadImage('Images/new hallway.jpg');
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+<<<<<<< HEAD
     /*background('#FFDB60');
 
    button = createButton('Click Here!');
@@ -71,8 +73,13 @@ function setup() {
      
     //morseCode= createAudio('images/Escape theme one.wav');
     //morseCode.loop();
+=======
+    background('#252B42');
     
-    entrance.loadPixels();
+    morseCode= createAudio('images/Escape theme one.wav');
+    morseCode.loop();
+>>>>>>> 23885423e7252321f36e83f53ea40d5fcbb59f01
+    
     room1.loadPixels();
     paper.loadPixels();
     map.loadPixels();
@@ -80,40 +87,29 @@ function setup() {
     finishPuzzle.loadPixels();
     room2.loadPixels();
     emptyBox.loadPixels();
-}
-
-function startMusic() {
-    let bg = ('color','#FFDB60')
-    button.style("background-color",bg);
-    button.style("color",bg);
-    introTheme.loop();
- }
-
-function changePG() {
-   let bg = ('color','#FFDB60')
-   button.style("color",bg);
-    button.style("background-color",bg);
-    fill('#FFDB60');
-    noStroke();
-    rect(230,50,1000,355)
-    image(entrance, (windowWidth/2)-350, (windowHeight/2)-275, 700,550);
+   
 }
 
 function draw() {
-    
-    //rect(650,280,150,130)
     //rect(650,250,50,140); plant
     //rect(750,230,120,65); map
     //rect(485,260,35,15); box
-     
+
     changeCursor();
+<<<<<<< HEAD
    if(inRoom1==true){
             image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);   
             
              if(isPlantClicked==true){
+=======
+    if(inRoom1==true){
+        image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+        
+        if(isPlantClicked==true){
+>>>>>>> 23885423e7252321f36e83f53ea40d5fcbb59f01
             image(paper,(windowWidth/2)-100, (windowHeight/2)-125, 200, 250);
             arrow();
-             }
+        }
 
         if(isBoxSolved==true){
             isBoxPress=false;
@@ -124,8 +120,14 @@ function draw() {
             }
         
         arrow();
+<<<<<<< HEAD
         
          if(isBoxPress==true){
+=======
+        }
+
+        if(isBoxPress==true){
+>>>>>>> 23885423e7252321f36e83f53ea40d5fcbb59f01
             image(puzzle,(windowWidth/2)-250, (windowHeight/2)-200, 500, 400);
         
             text(input[clicks1],720,420);
@@ -174,7 +176,7 @@ function draw() {
 }
 
 function mousePressed(){
-  if(inRoom1==true){
+  if(inRoom1){
         if(puzzleDone==false){
             if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
                 alert("Locked!");
@@ -182,9 +184,15 @@ function mousePressed(){
         }
          else if(puzzleDone==true){
             if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
-                
-                inRoom2=true;
                 inRoom1=false;
+                inRoom2=true;
+                
+                timesLeft++;
+
+                if(timesLeft==1){
+                    alert("Oh God, what a mess!");
+                }
+               
             }
         }
         
@@ -241,17 +249,16 @@ function mousePressed(){
                     }
                 } 
         }
-        if(puzzleDone==true){
+        if(puzzleDone){
             //rect(790,380,80,50);
             if(mouseX>=790 && mouseX<=870 && mouseY>=380 && mouseY<=430){
                 keyTaken=true;
                 alert("Great, let's see what's outside!");
-                
             }
         }
 }
 
-else if(inRoom2==true){
+else if(inRoom2){
     if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
         inRoom1=true;
         inRoom2= false;
@@ -296,7 +303,7 @@ translate(730,500);
 
 
 function changeCursor(){
-    if(inRoom1==true){
+    if(inRoom1){
 
        if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
             cursor(HAND);
@@ -333,7 +340,7 @@ function changeCursor(){
         }
     }
 
-    else if(inRoom2==true){
+    else if(inRoom2){
         if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
             cursor(HAND);
         }
