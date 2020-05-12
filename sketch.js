@@ -31,7 +31,8 @@ function preload(){
     finishPuzzle= loadImage('Images/Solved box.jpg');
     emptyBox= loadImage('Images/open box.jpg');
 
-    room2= loadImage('Images/new hallway.jpg');
+    room2= loadImage('Images/better hallway.jpg');
+    axePhoto= loadImage('Images/axe on table.jpg');
 }
 
 function setup() {
@@ -51,6 +52,7 @@ function setup() {
     finishPuzzle.loadPixels();
     room2.loadPixels();
     emptyBox.loadPixels();
+    axePhoto.loadPixels();
 }
 
 function draw() {
