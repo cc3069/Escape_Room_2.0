@@ -286,21 +286,18 @@ function changeCursor(){
             ||mouseX>=805 && mouseX<=840 && mouseY>=430 && mouseY<=440) { //bottom right
             cursor(HAND);
             }
-
-//rect(650,250,50,140); plant
 //rect(750,230,120,65); map
-//rect(485,260,35,15); box
 
         else if(mouseX>=(windowWidth/2)-113 && mouseX<=(windowWidth/2)-63 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+10){
             cursor(HAND);
         }
     
-        else if(mouseX>=(windowWidth/2)-13 && mouseX<=(windowWidth/2)-107 && mouseY>=(windowHeight/2)-202 && mouseY<=(windowHeight/2)-137){
+        else if(mouseX>=(windowWidth/2)+150 && mouseX<=(windowWidth/2)+107 && mouseY>=(windowHeight/2)-202 && mouseY<=(windowHeight/2)-137){
             cursor(HAND);
         }
     
-        else if(mouseX>=485 && mouseX<=520 && mouseY>=260 && mouseY<=275){
-            cursor(HAND);
+        else if(mouseX>=(windowWidth/2)-278 && mouseX<=(windowWidth/2)-243 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-105){
+           cursor(HAND);
         }
     
         else{
