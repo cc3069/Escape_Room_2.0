@@ -1,7 +1,7 @@
 let button;
 
-let inEntrance=false;
-let inRoom1= false;
+
+let inRoom1= true;
 let inRoom2= false;
 let inRoom3= false;
 
@@ -41,9 +41,9 @@ function preload(){
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background('#FFDB60');
+    /*background('#FFDB60');
 
-    button = createButton('Click Here!');
+   button = createButton('Click Here!');
     button.position(50, 550);
     button.size(200,100);
     button.style("font-family", "Bodoni");
@@ -67,7 +67,7 @@ function setup() {
     button.style("font-size", "30px");
     button.style("color","#FC7651");
     button.style("background-color","#FFDB60");
-    button.mousePressed(changePG);
+   button.mousePressed(changePG);*/
      
     //morseCode= createAudio('images/Escape theme one.wav');
     //morseCode.loop();
@@ -107,11 +107,9 @@ function draw() {
     //rect(485,260,35,15); box
      
     changeCursor();
-   
-       
-            if(isGrandDoorClicked==true){
+   if(inRoom1==true){
             image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);   
-            }
+            
              if(isPlantClicked==true){
             image(paper,(windowWidth/2)-100, (windowHeight/2)-125, 200, 250);
             arrow();
@@ -127,9 +125,7 @@ function draw() {
         
         arrow();
         
-    
-
-       if(isBoxPress==true){
+         if(isBoxPress==true){
             image(puzzle,(windowWidth/2)-250, (windowHeight/2)-200, 500, 400);
         
             text(input[clicks1],720,420);
@@ -155,7 +151,7 @@ function draw() {
             image(map,(windowWidth/2)-225, (windowHeight/2)-125, 450, 250);
             arrow();
         }
-    }
+        }
 
     else if(inRoom2==true){
         image(room2, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
@@ -191,7 +187,7 @@ function mousePressed(){
                 inRoom1=false;
             }
         }
-    
+        
         if(mouseX>=650 && mouseX<=700 && mouseY>=250 && mouseY<=390){
             alert("There's a piece of paper here");
             isPlantClicked= true;
