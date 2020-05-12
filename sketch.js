@@ -58,6 +58,7 @@ function draw() {
     changeCursor();
     if(inRoom1==true){
         image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+        
         //rect(650,250,50,140); plant
         //rect(750,230,120,65); map
         //rect(485,260,35,15); box
@@ -129,12 +130,12 @@ function draw() {
 function mousePressed(){
   if(inRoom1){
         if(puzzleDone==false){
-            if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
+            if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
                 alert("Locked!");
              }
         }
          else if(puzzleDone==true){
-            if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
+            if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
                 inRoom1=false;
                 inRoom2=true;
                 
@@ -147,16 +148,16 @@ function mousePressed(){
             }
         }
         
-        if(mouseX>=650 && mouseX<=700 && mouseY>=250 && mouseY<=390){
+        if(mouseX>=(windowWidth/2)-113 && mouseX<=(windowWidth/2)-63 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+10){
             alert("There's a piece of paper here");
             isPlantClicked= true;
         }
 
-        else if(mouseX>=485 && mouseX<=520 && mouseY>=260 && mouseY<=275){
+        else if(mouseX>=(windowWidth/2)-278 && mouseX<=(windowWidth/2)-243 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-105){
             isBoxPress= true;        
         }
 
-        else if(mouseX>=750 && mouseX<=870 && mouseY>=230 && mouseY<=295){
+        else if(mouseX>=(windowWidth/2)-10 && mouseX<=(windowWidth/2)+110 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)-85){
             isMapPress= true;
         }
 
@@ -252,11 +253,6 @@ translate(730,500);
   endShape();
 }
 
-    //rect(650,250,50,140); plant
-    //rect(750,230,120,65); map
-    //rect(485,260,35,15); box
-    //x:(windowWidth/2)-350
-    //h:(windowHeight/2)-275
 function changeCursor(){
 
     //(windowWidth/2)-350, (windowHeight/2)-275
@@ -265,7 +261,7 @@ function changeCursor(){
     //height: 864
 
     if(inRoom1){
-//80x170
+
        if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
             cursor(HAND);
         }
@@ -286,13 +282,13 @@ function changeCursor(){
             ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55) { //bottom right
             cursor(HAND);
             }
-//rect(750,230,120,65); map
+
 
         else if(mouseX>=(windowWidth/2)-113 && mouseX<=(windowWidth/2)-63 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+10){
             cursor(HAND);
         }
     
-        else if(mouseX>=(windowWidth/2)+150 && mouseX<=(windowWidth/2)+107 && mouseY>=(windowHeight/2)-202 && mouseY<=(windowHeight/2)-137){
+        else if(mouseX>=(windowWidth/2)-10 && mouseX<=(windowWidth/2)+110 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)-85){
             cursor(HAND);
         }
     
