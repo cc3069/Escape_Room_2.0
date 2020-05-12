@@ -84,9 +84,9 @@ function draw() {
         //windowWidth:1526
     //windowHeight:864
             fill('red');
-            text(input[clicks1],(windowWidth/2)+43,(windowHeight/2)-12);
-            text(input[clicks2],(windowWidth/2)+7,(windowHeight/2)-12);
-            text(input[clicks3],(windowWidth/2)+57,(windowHeight/2)-12);
+            text(input[clicks1],(windowWidth/2)-48,(windowHeight/2)+43);
+            text(input[clicks2],(windowWidth/2)+2,(windowHeight/2)+43);
+            text(input[clicks3],(windowWidth/2)+52,(windowHeight/2)+43);
 
              if(clicks1==2 && clicks2==5 && clicks3==7){
                 isBoxSolved= true;
