@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-let button;
-
-
-=======
->>>>>>> 23885423e7252321f36e83f53ea40d5fcbb59f01
 let inRoom1= true;
 let inRoom2= false;
 let inRoom3= false;
@@ -42,43 +36,10 @@ function preload(){
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-<<<<<<< HEAD
-    /*background('#FFDB60');
-
-   button = createButton('Click Here!');
-    button.position(50, 550);
-    button.size(200,100);
-    button.style("font-family", "Bodoni");
-    button.style("font-size", "30px");
-    button.style("color","#FC7651");
-    button.style("background-color","#FFDB60");
-    button.mousePressed(startMusic);
-
-    introTheme= createAudio('images/bensound-ukulele.mp3');
-  
-    fill('#FC7651')
-    textSize(36)
-    text("Welcome to Escape Room 2.0",(windowWidth/2)-250, (windowHeight/2)-275);
-    text('Open your ears and eyes...',(windowWidth/2)-350, (windowHeight/2)-75);
-    text('And Make It Out Alive',800,400 );
-    
-    button = createButton('Enter!');
-    button.position(1120, 550);
-    button.size(200,100);
-    button.style("font-family", "Bodoni");
-    button.style("font-size", "30px");
-    button.style("color","#FC7651");
-    button.style("background-color","#FFDB60");
-   button.mousePressed(changePG);*/
-     
-    //morseCode= createAudio('images/Escape theme one.wav');
-    //morseCode.loop();
-=======
     background('#252B42');
     
     morseCode= createAudio('images/Escape theme one.wav');
     morseCode.loop();
->>>>>>> 23885423e7252321f36e83f53ea40d5fcbb59f01
     
     room1.loadPixels();
     paper.loadPixels();
@@ -87,7 +48,6 @@ function setup() {
     finishPuzzle.loadPixels();
     room2.loadPixels();
     emptyBox.loadPixels();
-   
 }
 
 function draw() {
@@ -96,17 +56,10 @@ function draw() {
     //rect(485,260,35,15); box
 
     changeCursor();
-<<<<<<< HEAD
-   if(inRoom1==true){
-            image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);   
-            
-             if(isPlantClicked==true){
-=======
     if(inRoom1==true){
         image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
         
         if(isPlantClicked==true){
->>>>>>> 23885423e7252321f36e83f53ea40d5fcbb59f01
             image(paper,(windowWidth/2)-100, (windowHeight/2)-125, 200, 250);
             arrow();
         }
@@ -120,14 +73,9 @@ function draw() {
             }
         
         arrow();
-<<<<<<< HEAD
-        
-         if(isBoxPress==true){
-=======
         }
 
         if(isBoxPress==true){
->>>>>>> 23885423e7252321f36e83f53ea40d5fcbb59f01
             image(puzzle,(windowWidth/2)-250, (windowHeight/2)-200, 500, 400);
         
             text(input[clicks1],720,420);
@@ -301,7 +249,11 @@ translate(730,500);
   endShape();
 }
 
-
+    //rect(650,250,50,140); plant
+    //rect(750,230,120,65); map
+    //rect(485,260,35,15); box
+    //x:(windowWidth/2)-350
+    //h:(windowHeight/2)-275
 function changeCursor(){
     if(inRoom1){
 
