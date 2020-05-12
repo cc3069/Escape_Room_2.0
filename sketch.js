@@ -1,6 +1,12 @@
-let inRoom1= true;
+let button;
+
+let inEntrance=false;
+let inRoom1= false;
 let inRoom2= false;
 let inRoom3= false;
+
+//entrance
+let isGrandDoorClicked= false;
 
 //room 1
 let isMapPress= false;
@@ -23,23 +29,50 @@ let morseCode;
  let hotelArrow=false;
 
 function preload(){
+    entrance=loadImage('Images/hotel entrance.png');
     room1= loadImage('Images/hotel bedroom.jpg');
     paper= loadImage('Images/Morse code reference.jpg');
     map= loadImage('Images/edited map.jpg');
     puzzle= loadImage('Images/Box puzzle unsolved.jpg');
     finishPuzzle= loadImage('Images/Solved box.jpg');
     emptyBox= loadImage('Images/open box.jpg');
-
     room2= loadImage('Images/new hallway.jpg');
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background('#252B42');
+    background('#FFDB60');
+
+    button = createButton('Click Here!');
+    button.position(50, 550);
+    button.size(200,100);
+    button.style("font-family", "Bodoni");
+    button.style("font-size", "30px");
+    button.style("color","#FC7651");
+    button.style("background-color","#FFDB60");
+    button.mousePressed(startMusic);
+
+    introTheme= createAudio('images/bensound-ukulele.mp3');
+  
+    fill('#FC7651')
+    textSize(36)
+    text("Welcome to Escape Room 2.0",(windowWidth/2)-250, (windowHeight/2)-275);
+    text('Open your ears and eyes...',(windowWidth/2)-350, (windowHeight/2)-75);
+    text('And Make It Out Alive',800,400 );
     
-    morseCode= createAudio('images/Escape theme one.wav');
-    morseCode.loop();
+    button = createButton('Enter!');
+    button.position(1120, 550);
+    button.size(200,100);
+    button.style("font-family", "Bodoni");
+    button.style("font-size", "30px");
+    button.style("color","#FC7651");
+    button.style("background-color","#FFDB60");
+    button.mousePressed(changePG);
+     
+    //morseCode= createAudio('images/Escape theme one.wav');
+    //morseCode.loop();
     
+    entrance.loadPixels();
     room1.loadPixels();
     paper.loadPixels();
     map.loadPixels();
@@ -47,22 +80,42 @@ function setup() {
     finishPuzzle.loadPixels();
     room2.loadPixels();
     emptyBox.loadPixels();
-   
+}
+
+function startMusic() {
+    let bg = ('color','#FFDB60')
+    button.style("background-color",bg);
+    button.style("color",bg);
+    introTheme.loop();
+ }
+
+function changePG() {
+   let bg = ('color','#FFDB60')
+   button.style("color",bg);
+    button.style("background-color",bg);
+    fill('#FFDB60');
+    noStroke();
+    rect(230,50,1000,355)
+    image(entrance, (windowWidth/2)-350, (windowHeight/2)-275, 700,550);
 }
 
 function draw() {
+    
+    //rect(650,280,150,130)
     //rect(650,250,50,140); plant
     //rect(750,230,120,65); map
     //rect(485,260,35,15); box
-
+     
     changeCursor();
-    if(inRoom1==true){
-        image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
-        
-        if(isPlantClicked==true){
+   
+       
+            if(isGrandDoorClicked==true){
+            image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);   
+            }
+             if(isPlantClicked==true){
             image(paper,(windowWidth/2)-100, (windowHeight/2)-125, 200, 250);
             arrow();
-        }
+             }
 
         if(isBoxSolved==true){
             isBoxPress=false;
@@ -73,9 +126,10 @@ function draw() {
             }
         
         arrow();
-        }
+        
+    
 
-        if(isBoxPress==true){
+       if(isBoxPress==true){
             image(puzzle,(windowWidth/2)-250, (windowHeight/2)-200, 500, 400);
         
             text(input[clicks1],720,420);
@@ -196,7 +250,7 @@ function mousePressed(){
             if(mouseX>=790 && mouseX<=870 && mouseY>=380 && mouseY<=430){
                 keyTaken=true;
                 alert("Great, let's see what's outside!");
-                alert("Oh God, what a mess!");
+                
             }
         }
 }
