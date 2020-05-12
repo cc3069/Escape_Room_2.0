@@ -162,39 +162,39 @@ function mousePressed(){
         }
 
         if(isBoxPress==true){
-            if(mouseX>=707 && mouseX<=742 && mouseY>=390 && mouseY<=400){
+            if(mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
                 clicks1++;
                 if(clicks1==input.length){
                     clicks1=0;
                 }    
         } 
-        else if(mouseX>=707 && mouseX<=840 && mouseY>=430 && mouseY<=440){
+        else if(mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
             clicks1--;
             if(clicks1<0){
                 clicks1=7;
             }
         }
 
-        if(mouseX>=755 && mouseX<=790 && mouseY>=390 && mouseY<=400){
+        if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
             clicks2++;
             if(clicks2==input.length){
                 clicks2=0;
             }    
         } 
-        else if(mouseX>=755 && mouseX<=840 && mouseY>=430 && mouseY<=440){
+        else if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
                 clicks2--;
                 if(clicks2<0){
                     clicks2=7;
                 }
             }
 
-        if(mouseX>=805 && mouseX<=840 && mouseY>=390 && mouseY<=400){
+        if(mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
                     clicks3++;
                     if(clicks3==input.length){
                         clicks3=0;
                     }    
                 } 
-        else if(mouseX>=805 && mouseX<=840 && mouseY>=430 && mouseY<=440){
+        else if(mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
                     clicks3--;
                     if(clicks3<0){
                         clicks3=7;
@@ -277,8 +277,8 @@ function changeCursor(){
             ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20 //top left
             ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20 //top right
     
-            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55 //bottom left
-            ||mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55 //bottom center
+            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55 //bottom left
+            ||mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55 //bottom center
             ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55) { //bottom right
             cursor(HAND);
             }
