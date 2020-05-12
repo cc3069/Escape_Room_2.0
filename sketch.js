@@ -24,6 +24,13 @@ let timesLeft=0;
  let hotelArrow=false;
  let isSheepClicked=false;
  let isWaterClicked=false;
+ let boardedDoor= false;
+ let wrongDoor= false;
+ let waterPress= false;
+ let exitPress= false;
+ let showAxe= false;
+ let axeTaken= false;
+ let playAgain= false;
 
 function preload(){
     room1= loadImage('Images/hotel bedroom.jpg');
@@ -37,6 +44,8 @@ function preload(){
     axePhoto= loadImage('Images/axe on table.jpg');
     newZealandFlag= loadImage('Images/New zealand flag.png');
     glacier=loadImage('Images/Glacier.jpg');
+    axeGone= loadImage('Images/table no axe.jpg');
+    gameOver= loadImage('Images/wrong door.jpg');
 }
 
 function setup() {
@@ -59,6 +68,10 @@ function setup() {
     axePhoto.loadPixels();
     newZealandFlag.loadPixels();
     glacier.loadPixels();
+    axeGone.loadPixels();
+    gameOver.loadPixels();
+
+    
 }
 
 function draw() {
@@ -124,16 +137,52 @@ function draw() {
         fill('black');
         text('To Hotel Room',900,630);
         rm1Arrow();
+
+        //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
+        //rect((windowWidth/2)-520, (windowHeight/2)-650, 100,300); axe door
+        //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
+        //rect((windowWidth/2)-790, (windowHeight/2)-650, 100,170); exit door
+
+        if(showAxe==true){
+            translate(-730,-500);
+            image(axePhoto,(windowWidth/2)-50, (windowHeight/2)-200, 300, 250);
+            arrow();
+        }
+
+        else if(wrongDoor==true){
+            translate(-730,-500);
+            image(gameOver,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+            
+        }
+
     }
     
+    if(playAgain==true){
+        clicks1=0;
+        clicks2=0;
+        clicks3=0;
+        inRoom1=true;
+        isBoxSolved= false;
+        puzzleDone=false;
+        keyTaken= false;
+        timesLeft=0;
+        playAgain= false;
+    }
   
 
     if(backButton==true){
         isPlantClicked=false;
         isMapPress= false;
-        isBoxPress= false;
-        backButton=false;
+        isBoxPress=false;
         isBoxSolved= false;
+
+        boardedDoor= false;
+        wrongDoor= false;
+        waterPress= false;
+        exitPress= false;
+        showAxe= false;
+
+        backButton=false;
     }
    
 }
@@ -231,6 +280,42 @@ else if(inRoom2){
             image(newZealandFlag,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550 )
         }
     }*/
+         //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
+        //rect((windowWidth/2)-520, (windowHeight/2)-650, 100,300); axe door
+        //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
+        //rect((windowWidth/2)-790, (windowHeight/2)-650, 100,170); exit door
+
+        //translate(730,500);
+    if(mouseX>=(windowWidth/2)-310 && mouseX<=(windowWidth/2)-235 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
+        boardedDoor=true;
+        if(axeTaken==false){
+            alert("It's boarded up. We should find a way to open it");
+        }
+
+        else{
+            inRoom3=true;
+        }
+    }
+
+    else if(mouseX>=(windowWidth/2)+210 && mouseX<=(windowWidth/2)+310 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
+        showAxe= true;
+    }
+
+    else if(mouseX>=(windowWidth/2)+110 && mouseX<=(windowWidth/2)+160 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)+60){
+        wrongDoor= true;
+    }
+
+    else if(wrongDoor==true){
+        //rect((windowWidth/2)-320, (windowHeight/2)+150, 130, 70);
+        if(mouseX>=(windowWidth/2)-320 && mouseX<=(windowWidth/2)-190 && mouseY>=(windowHeight/2)+150 && mouseY<=(windowHeight/2)+220){
+            playAgain=true;
+        }
+    }
+
+    else if(mouseX>=(windowWidth/2)-60 && mouseX<=(windowWidth/2)+40 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+20){
+        exitPress= true;
+        alert("Nope! Locked tight!");
+    }
 }
  
 if((mouseX>=430 && mouseX<=464 && mouseY>=116 && mouseY<=189) ||(mouseX>=464 && mouseX<=540 && mouseY>=143 && mouseY<=162)){
