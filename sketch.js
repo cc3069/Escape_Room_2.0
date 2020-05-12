@@ -38,6 +38,9 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background('#252B42');
     
+    print(screen.width); //1536px
+    print(screen.height); //864px
+
     morseCode= createAudio('images/Escape theme one.wav');
     morseCode.loop();
     
@@ -51,13 +54,13 @@ function setup() {
 }
 
 function draw() {
-    //rect(650,250,50,140); plant
-    //rect(750,230,120,65); map
-    //rect(485,260,35,15); box
-
+    
     changeCursor();
     if(inRoom1==true){
         image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+        //rect(650,250,50,140); plant
+        //rect(750,230,120,65); map
+        //rect(485,260,35,15); box
         
         if(isPlantClicked==true){
             image(paper,(windowWidth/2)-100, (windowHeight/2)-125, 200, 250);
@@ -255,9 +258,15 @@ translate(730,500);
     //x:(windowWidth/2)-350
     //h:(windowHeight/2)-275
 function changeCursor(){
-    if(inRoom1){
 
-       if(mouseX>=970 && mouseX<=1050 && mouseY>=260 && mouseY<=430){
+    //windowWidth/2)-350, (windowHeight/2)-275
+    //413, 157
+    //width: 1526
+    //height: 864
+
+    if(inRoom1){
+//80x170
+       if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-69 && mouseY<=(windowHeight/2)+101){
             cursor(HAND);
         }
 
