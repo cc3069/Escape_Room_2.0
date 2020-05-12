@@ -81,10 +81,11 @@ function draw() {
 
         if(isBoxPress==true){
             image(puzzle,(windowWidth/2)-250, (windowHeight/2)-200, 500, 400);
-        
-            text(input[clicks1],720,420);
-            text(input[clicks2],770,420);
-            text(input[clicks3],820,420);
+        //windowWidth:1526
+    //windowHeight:864
+            text(input[clicks1],(windowWidth/2)-43,(windowHeight/2)-12);
+            text(input[clicks2],(windowWidth/2)+7(windowHeight/2)-12);
+            text(input[clicks3],(windowWidth/2)+57,(windowHeight/2)-12);
 
              if(clicks1==2 && clicks2==5 && clicks3==7){
                 isBoxSolved= true;
@@ -257,8 +258,8 @@ function changeCursor(){
 
     //(windowWidth/2)-350, (windowHeight/2)-275
     //413, 157
-    //width: 1526
-    //height: 864
+    //windowWidth:1526
+    //windowHeight:864
 
     if(inRoom1){
 
