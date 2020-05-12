@@ -277,13 +277,13 @@ function changeCursor(){
             //rect(505,350,35,10);
             //rect(555,350,35,10);
 
-        else if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)-142 && mouseY<=(windowHeight/2)+100//top center
-            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-142&& mouseY<=(windowHeight/2)+100 //top left
-            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-142 && mouseY<=(windowHeight/2)+100 //top right
+        else if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20//top center
+            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20 //top left
+            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20 //top right
     
-            ||mouseX>=707 && mouseX<=840 && mouseY>=430 && mouseY<=440 //bottom left
-            ||mouseX>=755 && mouseX<=840 && mouseY>=430 && mouseY<=440 //bottom center
-            ||mouseX>=805 && mouseX<=840 && mouseY>=430 && mouseY<=440) { //bottom right
+            ||mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+30 && mouseY<=(windowHeight/2)+30 //bottom left
+            ||mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+30 && mouseY<=(windowHeight/2)+30 //bottom center
+            ||mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+30 && mouseY<=(windowHeight/2)+30) { //bottom right
             cursor(HAND);
             }
 
