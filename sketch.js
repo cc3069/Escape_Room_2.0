@@ -1,6 +1,6 @@
 let inRoom1= false;
-let inRoom2= true;
-let inRoom3= false;
+let inRoom2= false;
+let inRoom3= true;
 
 //room 1
 let isMapPress= false;
@@ -38,7 +38,16 @@ let timesLeft=0;
  let boilerMessage= false;
  let vaultPress= false;
  let vaultOpen=false;
- let hallwayRoute= false;
+
+ //vault puzzle
+ let letters1=0;
+ let letters2=0;
+ let letters3=0;
+ let letters4=0;
+ let firstSet=['A','B','C','D','E','F'];
+ let secondSet=['G','H','I','J','K','L'];
+ let thirdSet=['M','N','O','P','Q','R'];
+ let fourthSet= ['S','T','U','V','W','X','Y','Z'];
 
 function preload(){
     room1= loadImage('Images/hotel bedroom.jpg');
@@ -59,6 +68,7 @@ function preload(){
 
     room3= loadImage('Images/creepy basement.jpg');
     boilerHint= loadImage('Images/boiler hint.jpg');
+    vaultPuzzle= loadImage('Images/vault puzzle.jpg');
 }
 
 function setup() {
@@ -88,7 +98,8 @@ function setup() {
     solvedHallway.loadPixels();
 
     room3.loadPixels();
-    boilerHint.loadPixels();    
+    boilerHint.loadPixels();  
+    vaultPuzzle.loadPixels();  
 }
 
 function draw() {
@@ -145,7 +156,8 @@ function draw() {
             image(map,(windowWidth/2)-225, (windowHeight/2)-125, 450, 250);
             arrow();
         }
-        }
+    }
+    
 
     else if(inRoom2){
         //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
@@ -208,32 +220,39 @@ function draw() {
             image(boilerHint,(windowWidth/2)-110, (windowHeight/2)-100, 200, 250);
             arrow();
         }
+
+        if(vaultPress==true){
+            image(vaultPuzzle,(windowWidth/2)-150, (windowHeight/2)-140, 500, 400);
+            //rect((windowWidth/2)-45, (windowHeight/2)-120, 40, 60);
+            //rect((windowWidth/2)-45, (windowHeight/2)-25, 40, 60);
+            //rect((windowWidth/2)-45, (windowHeight/2)+70, 40, 60);
+            //rect((windowWidth/2)-45, (windowHeight/2)+170, 40, 60);
+
+            //rect((windowWidth/2)+200, (windowHeight/2)-120, 40, 60);
+            //rect((windowWidth/2)+200, (windowHeight/2)-25, 40, 60);
+            //rect((windowWidth/2)+200, (windowHeight/2)+70, 40, 60);
+            //rect((windowWidth/2)+200, (windowHeight/2)+170, 40, 60);
+
+            fill('red');
+            textSize(50);
+            text(firstSet[letters1],(windowWidth/2)+80,(windowHeight/2)-70);
+            text(secondSet[letters2],(windowWidth/2)+80,(windowHeight/2)+20);
+            text(thirdSet[letters3],(windowWidth/2)+80,(windowHeight/2)+120);
+            text(fourthSet[letters4],(windowWidth/2)+80,(windowHeight/2)+220);
+
+             if(letters1==0 && letters2==0 && letters3==1 && letters4==7){
+                vaultOpen= true;
+            }
+            arrow();
+        }
         
     }
     
     if(backButton==true){
         back();
     }
-   
 }
 
-function mousePressed(){
-    if(inRoom1){
-        bedroom();
-    }
-    
-    else if(inRoom2){
-        hallway();
-    }
-
-    else if(inRoom3){
-        basement();
-    }
-
-    if((mouseX>=430 && mouseX<=464 && mouseY>=116 && mouseY<=189) ||(mouseX>=464 && mouseX<=540 && mouseY>=143 && mouseY<=162)){
-        backButton=true;
-    }
-}
 
 function boxPuzzle(){
     if(mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
@@ -390,7 +409,87 @@ function basement(){
         else if(mouseX>=(windowWidth/2)-220 && mouseX<=(windowWidth/2)-170 && mouseY>=(windowHeight/2)+40 && mouseY<=(windowHeight/2)+100){
             boilerMessage=true;
         }
+
+        else if(mouseX>=(windowWidth/2)-150 && mouseX<=(windowWidth/2)+275 && mouseY>=(windowHeight/2)-90 && mouseY<=(windowHeight/2)+110){
+            vaultPress=true;
+            vault();
+        }
    }
+
+   function vault(){
+    if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-60){
+        letters1++;
+        if(letters1==firstSet.length){
+            letters1=0;
+        }    
+    } 
+    else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-60){
+        letters1--;
+        if(letters1<0){
+            letters1=5;
+        }
+    }
+
+    if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)-25 && mouseY<=(windowHeight/2)+35){
+        letters2++;
+        if(letters2==secondSet.length){
+            letters2=0;
+        }    
+    } 
+    else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)-25 && mouseY<=(windowHeight/2)+35){
+        letters2--;
+        if(letters2<0){
+            letters2=5;
+        }
+    }
+
+    if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)+70 && mouseY<=(windowHeight/2)+130){
+            letters3++;
+            if(letters3==thirdSet.length){
+                letters3=0;
+            }    
+        } 
+    else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+70 && mouseY<=(windowHeight/2)+130){
+            letters3--;
+            if(letters3<0){
+                letters3=5;
+            }
+        } 
+    
+        if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230){
+            letters4++;
+            if(letters4==fourthSet.length){
+                letters4=0;
+            }    
+        } 
+    
+        else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230){
+            letters4--;
+            if(letters4<0){
+                letters4=6;
+            }
+        } 
+   }
+
+   
+function mousePressed(){
+    if(inRoom1){
+        bedroom();
+    }
+    
+    else if(inRoom2){
+        hallway();
+    }
+
+    else if(inRoom3){
+        basement();
+    }
+
+    if((mouseX>=430 && mouseX<=464 && mouseY>=116 && mouseY<=189) ||(mouseX>=464 && mouseX<=540 && mouseY>=143 && mouseY<=162)){
+        backButton=true;
+    }
+
+}
     
    
 function replay(){
@@ -422,6 +521,7 @@ function back(){
     showAxe= false;
 
     boilerMessage= false;
+    vaultPress=false;
 
     backButton=false;
 }
@@ -555,6 +655,10 @@ function changeCursor3(){
     }
 //rect((windowWidth/2)-220, (windowHeight/2)+40, 50,60);
     else if(mouseX>=(windowWidth/2)-220 && mouseX<=(windowWidth/2)-170 && mouseY>=(windowHeight/2)+40 && mouseY<=(windowHeight/2)+100){
+        cursor(HAND);
+    }
+
+    else if(mouseX>=(windowWidth/2)+125 && mouseX<=(windowWidth/2)+275 && mouseY>=(windowHeight/2)-90 && mouseY<=(windowHeight/2)+110){
         cursor(HAND);
     }
 
