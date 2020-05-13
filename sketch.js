@@ -1,13 +1,6 @@
-let Scream;
-let endTheme;
-
-
 let inRoom1= true;
 let inRoom2= false;
 let inRoom3= false;
-
-//introPage
-let isClicked=false;
 
 //room 1
 let isMapPress= false;
@@ -19,6 +12,9 @@ let keyTaken= false;
 let isPlantClicked= false;
 let backButton= false;
 let morseCode;
+let Scream;
+let morseCodeisPlaying=false;
+let screamisPlaying=false;
 let timesLeft=0;
 
 //box puzzle
@@ -44,7 +40,8 @@ let timesLeft=0;
  let vaultPress= false;
  let vaultOpen=false;
  let hallwayRoute= false;
-
+ let endTheme;
+let congratulationisPlaying=false;
 function preload(){
     room1= loadImage('Images/hotel bedroom.jpg');
     paper= loadImage('Images/Morse code reference.jpg');
@@ -85,15 +82,7 @@ function setup() {
     textSize(30)
     text('Open your ears and eyes...', 330, 50);
     text('And Make It Out Alive',700,50 );
-    
-    button = createButton('Click');
-    button.position(1120, 550);
-    button.size(200,100);
-    button.style("font-family", "Bodoni");
-    button.style("font-size", "36px");
-    button.style("color","red");
-    button.style("background-color","#252B42");
-    button.mousePressed(startMusic);
+    text('Click to Play!',1030,50 )
      
     room1.loadPixels();
     paper.loadPixels();
@@ -115,8 +104,6 @@ function setup() {
     morseCode= createAudio('Images/Escape theme one.wav');
     Scream= createAudio('Images/scream.wav');
     endTheme= createAudio('Images/bensound-ukulele.mp3');
-
-    
 }
 
 /*function endMusic() {
@@ -126,10 +113,7 @@ function setup() {
     endTheme.play();
  }*/
 
-function startMusic() {
-    morseCode.play();
 
-}
 
 function draw() {
     changeCursor();
@@ -256,6 +240,22 @@ function draw() {
    
 }
 
+function mouseClicked(){
+    if(mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height){
+        background('#252B42')
+        if(morseCodeisPlaying){
+            morseCode.stop();
+            morseCodeisPlaying=false;
+            fill('red')
+            text('Play Again', 300, 700)
+        } else{
+            morseCode.loop();
+            morseCodeisPlaying=true;
+            fill('red')
+            text('Make It Stop!!',950, 700)
+        }
+    }
+}
 function mousePressed(){
 /*if(morseCode.isPlaying()){
    morseCode.stop();
