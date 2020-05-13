@@ -137,7 +137,8 @@ function draw() {
         fill('black');
         text('To Hotel Room',900,630);
         rm1Arrow();
-
+        fill('red')
+        rect((windowWidth/2)-1030, (windowHeight/2)-700,130,70)
         //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
         //rect((windowWidth/2)-520, (windowHeight/2)-650, 100,300); axe door
         //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
@@ -269,17 +270,18 @@ function mousePressed(){
             }
         }
 }
-
+       
 else if(inRoom2){
     if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
         inRoom1=true;
         inRoom2= false;
     }
-    /*if(isSheepClicked==true){
-        if(mouseX>=(windowWidth/2)-278 && mouseX<=(windowWidth/2)-243 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-105){
+    if(isSheepClicked==true){
+      
+        if(mouseX>=(windowWidth/2)+60 && mouseX<=(windowWidth/2)+140 && mouseY>=(windowHeight/2)-100 && mouseY<=(windowHeight/2)+120){
             image(newZealandFlag,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550 )
         }
-    }*/
+    }
          //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
         //rect((windowWidth/2)-520, (windowHeight/2)-650, 100,300); axe door
         //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
