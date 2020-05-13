@@ -22,6 +22,8 @@ let timesLeft=0;
 
  //room 2
  let hotelArrow=false;
+ let isSheepClicked=false;
+ let isWaterClicked=false;
  let boardedDoor= false;
  let wrongDoor= false;
  let waterPress= false;
@@ -46,6 +48,8 @@ function preload(){
 
     room2= loadImage('Images/better hallway.jpg');
     axePhoto= loadImage('Images/axe on table.jpg');
+    newZealandFlag= loadImage('Images/New zealand flag.png');
+    glacier=loadImage('Images/Glacier.jpg');
     axeGone= loadImage('Images/table no axe.jpg');
     gameOver= loadImage('Images/wrong door.jpg');
 
@@ -72,6 +76,8 @@ function setup() {
     room2.loadPixels();
     emptyBox.loadPixels();
     axePhoto.loadPixels();
+    newZealandFlag.loadPixels();
+    glacier.loadPixels();
     axeGone.loadPixels();
     gameOver.loadPixels();
 
@@ -295,6 +301,11 @@ else if(inRoom2){
         inRoom1=true;
         inRoom2= false;
     }
+    /*if(isSheepClicked==true){
+        if(mouseX>=(windowWidth/2)-278 && mouseX<=(windowWidth/2)-243 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-105){
+            image(newZealandFlag,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550 )
+        }
+    }*/
          //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
         //rect((windowWidth/2)-520, (windowHeight/2)-650, 100,300); axe door
         //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
@@ -443,6 +454,9 @@ function changeCursor(){
         if((mouseX>=(windowWidth/2)+155 && mouseX<=(windowWidth/2)+300 && mouseY>= (windowHeight/2)+165 && mouseY<=(windowHeight/2)+185) ||(mouseX>=(windowWidth/2)+300 && mouseX<=(windowWidth/2)+380 && mouseY>=(windowHeight/2)+185 && mouseY<=(windowHeight/2)+230)){
             cursor(HAND);
         }
+        /*if(mouseX>=(windowWidth/2)-278 && mouseX<=(windowWidth/2)-243 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-105){
+            cursor(HAND);
+        }*/
 
         else{
             cursor(ARROW);
