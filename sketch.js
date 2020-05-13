@@ -146,6 +146,7 @@ function draw() {
             image(puzzle,(windowWidth/2)-250, (windowHeight/2)-200, 500, 400);
   
             fill('red');
+            textSize(20)
             text(input[clicks1],(windowWidth/2)-48,(windowHeight/2)+43);
             text(input[clicks2],(windowWidth/2)+2,(windowHeight/2)+43);
             text(input[clicks3],(windowWidth/2)+52,(windowHeight/2)+43);
@@ -257,21 +258,6 @@ function mouseClicked(){
     }
 }
 function mousePressed(){
-/*if(morseCode.isPlaying()){
-   morseCode.stop();
-   inRoom1=false;
-}else{
-    morseCode.play();
-    inRoom1=true
-}
-if(Scream.isPlaying()){
-   Scream.stop();
-   puzzleDone=false
-}else{
-    Scream.play();
-    puzzleDone=true
-}*/
-
  if(inRoom1){
         if(puzzleDone==false){
             if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
@@ -284,13 +270,7 @@ if(Scream.isPlaying()){
                 inRoom2=true;
                 morseCode.stop(inRoom1=false)
                 timesLeft++;
-
-                if(timesLeft==1){
-                    alert("Oh God, what a mess!");
-                    Scream.play();
-                }
-               
-            }
+             }
         }
         
         if(mouseX>=(windowWidth/2)-113 && mouseX<=(windowWidth/2)-63 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+10){
