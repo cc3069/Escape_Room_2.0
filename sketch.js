@@ -322,7 +322,6 @@ function bedroom(){
         }
 }
 
-
 function hallway(){
         if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
             inRoom1=true;
