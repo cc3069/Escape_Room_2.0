@@ -1,6 +1,6 @@
 let inRoom1= false;
-let inRoom2= true;
-let inRoom3= false;
+let inRoom2= false;
+let inRoom3= true;
 
 //room 1
 let isMapPress= false;
@@ -30,6 +30,12 @@ let timesLeft=0;
  let axeTaken= false;
  let playAgain= false;
 
+ //room 3
+ let boilerMessage= false;
+ let vaultPress= false;
+ let vaultOpen=false;
+ let hallwayRoute= false;
+
 function preload(){
     room1= loadImage('Images/hotel bedroom.jpg');
     paper= loadImage('Images/Morse code reference.jpg');
@@ -42,6 +48,9 @@ function preload(){
     axePhoto= loadImage('Images/axe on table.jpg');
     axeGone= loadImage('Images/table no axe.jpg');
     gameOver= loadImage('Images/wrong door.jpg');
+
+    room3= loadImage('Images/creepy basement.jpg');
+    boilerHint= loadImage('Images/boiler hint.jpg');
 }
 
 function setup() {
@@ -59,11 +68,15 @@ function setup() {
     map.loadPixels();
     puzzle.loadPixels();
     finishPuzzle.loadPixels();
+
     room2.loadPixels();
     emptyBox.loadPixels();
     axePhoto.loadPixels();
     axeGone.loadPixels();
     gameOver.loadPixels();
+
+    room3.loadPixels();
+    boilerHint.loadPixels();
 
     
 }
@@ -137,31 +150,42 @@ function draw() {
         //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
         //rect((windowWidth/2)-790, (windowHeight/2)-650, 100,170); exit door
 
+        
         if(showAxe==true){
-            translate(-730,-500);
-            image(axePhoto,(windowWidth/2)-50, (windowHeight/2)-200, 300, 250);
+            image(axePhoto,(windowWidth/2)+40, (windowHeight/2)-100, 300, 250);
+            if(axeTaken==true){
+                image(axeGone,(windowWidth/2)+40, (windowHeight/2)-100, 300, 250);
+            }
             arrow();
         }
 
         else if(wrongDoor==true){
-            translate(-730,-500);
             image(gameOver,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
-            
         }
 
+        if(playAgain==true){
+            clicks1=0;
+            clicks2=0;
+            clicks3=0;
+            inRoom1=true;
+            isBoxSolved= false;
+            puzzleDone=false;
+            keyTaken= false;
+            timesLeft=0;
+            playAgain= false;
+        }
+    }
+
+    else if (inRoom3==true){
+        image(room3,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+        if(boilerMessage==true){
+            image(boilerHint,(windowWidth/2)-110, (windowHeight/2)-100, 200, 250);
+            arrow();
+        }
+        
     }
     
-    if(playAgain==true){
-        clicks1=0;
-        clicks2=0;
-        clicks3=0;
-        inRoom1=true;
-        isBoxSolved= false;
-        puzzleDone=false;
-        keyTaken= false;
-        timesLeft=0;
-        playAgain= false;
-    }
+    
   
 
     if(backButton==true){
@@ -175,6 +199,8 @@ function draw() {
         waterPress= false;
         exitPress= false;
         showAxe= false;
+
+        boilerMessage= false;
 
         backButton=false;
     }
@@ -281,13 +307,21 @@ else if(inRoom2){
             alert("It's boarded up. We should find a way to open it");
         }
 
-        else{
+        else if(axeTaken==true){
+            inRoom2= false;
             inRoom3=true;
         }
+            
     }
 
     else if(mouseX>=(windowWidth/2)+210 && mouseX<=(windowWidth/2)+310 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
         showAxe= true;
+    }
+
+    else if(showAxe==true){
+        if(mouseX>=(windowWidth/2)+120 && mouseX<=(windowWidth/2)+220 && mouseY>=(windowHeight/2)-20 && mouseY<=(windowHeight/2)+10){
+            axeTaken= true;
+        }
     }
 
     else if(mouseX>=(windowWidth/2)+110 && mouseX<=(windowWidth/2)+160 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)+60){
@@ -305,6 +339,18 @@ else if(inRoom2){
         exitPress= true;
         alert("Nope! Locked tight!");
     }
+}
+
+else if(inRoom3){
+     //rect((windowWidth/2)-150, (windowHeight/2)-210, 150,95);
+     if(mouseX>=(windowWidth/2)-150 && mouseX<=(windowWidth/2) && mouseY>=(windowHeight/2)-210 && mouseY<=(windowHeight/2)-115){
+         inRoom2=true;
+         inRoom3=false;
+     }
+//rect((windowWidth/2)-220, (windowHeight/2)+40, 50,60);
+     else if(mouseX>=(windowWidth/2)-220 && mouseX<=(windowWidth/2)-170 && mouseY>=(windowHeight/2)+40 && mouseY<=(windowHeight/2)+100){
+         boilerMessage=true;
+     }
 }
  
 if((mouseX>=430 && mouseX<=464 && mouseY>=116 && mouseY<=189) ||(mouseX>=464 && mouseX<=540 && mouseY>=143 && mouseY<=162)){
@@ -341,6 +387,8 @@ translate(730,500);
     vertex(256, 82);
     vertex(180, 82)
   endShape();
+
+  translate(-730,-500);
 }
 
 function changeCursor(){
