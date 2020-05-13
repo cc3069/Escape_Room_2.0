@@ -33,6 +33,8 @@ let timesLeft=0;
  let exitPress= false;
  let showAxe= false;
  let axeTaken= false;
+ let hallwayDone= false;
+ let timesExitedHallway= 0;
  let playAgain= false;
 
  //room 3
@@ -42,6 +44,17 @@ let timesLeft=0;
  let hallwayRoute= false;
  let endTheme;
 let congratulationisPlaying=false;
+
+ //vault puzzle
+ let letters1=0;
+ let letters2=0;
+ let letters3=0;
+ let letters4=0;
+ let firstSet=['A','B','C','D','E','F'];
+ let secondSet=['G','H','I','J','K','L'];
+ let thirdSet=['M','N','O','P','Q','R'];
+ let fourthSet= ['S','T','U','V','W','X','Y','Z'];
+
 function preload(){
     room1= loadImage('Images/hotel bedroom.jpg');
     paper= loadImage('Images/Morse code reference.jpg');
@@ -52,13 +65,16 @@ function preload(){
 
     room2= loadImage('Images/better hallway.jpg');
     axePhoto= loadImage('Images/axe on table.jpg');
-    newZealandFlag= loadImage('Images/New zealand flag.png');
+    newZealandClue= loadImage('Images/New zealand pic.jpg');
+    greenlandClue= loadImage('Images/nametag clue.jpg');
     glacier=loadImage('Images/Glacier.jpg');
     axeGone= loadImage('Images/table no axe.jpg');
     gameOver= loadImage('Images/wrong door.jpg');
+    solvedHallway= loadImage('Images/solved hallway.jpg');
 
     room3= loadImage('Images/creepy basement.jpg');
     boilerHint= loadImage('Images/boiler hint.jpg');
+    vaultPuzzle= loadImage('Images/vault puzzle.jpg');
 }
 
 function setup() {
@@ -93,17 +109,20 @@ function setup() {
     room2.loadPixels();
     emptyBox.loadPixels();
     axePhoto.loadPixels();
-    newZealandFlag.loadPixels();
+    newZealandClue.loadPixels();
+    greenlandClue.loadPixels();
     glacier.loadPixels();
     axeGone.loadPixels();
     gameOver.loadPixels();
+    solvedHallway.loadPixels();
 
     room3.loadPixels();
     boilerHint.loadPixels();
-
+    vaultPuzzle.loadPixels();
     morseCode= createAudio('Images/Escape theme one.wav');
     Scream= createAudio('Images/scream.wav');
     endTheme= createAudio('Images/bensound-ukulele.mp3');
+      
 }
 
 /*function endMusic() {
@@ -116,9 +135,9 @@ function setup() {
 
 
 function draw() {
-    changeCursor();
     if(inRoom1==true){
         image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+        changeCursor1();
         
         //rect(650,250,50,140); plant
         //rect(750,230,120,65); map
@@ -170,22 +189,35 @@ function draw() {
             image(map,(windowWidth/2)-225, (windowHeight/2)-125, 450, 250);
             arrow();
         }
-        }
+    }
+    
 
-    else if(inRoom2==true){
-        image(room2, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
-        textSize(16);
-        fill('black');
-        text('To Hotel Room',900,630);
-        rm1Arrow();
-        
-        //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300);boarded door
+    else if(inRoom2){
+        //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
         //rect((windowWidth/2)-520, (windowHeight/2)-650, 100,300); axe door
         //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
         //rect((windowWidth/2)-790, (windowHeight/2)-650, 100,170); exit door
+        //rect((windowWidth/2)-200, (windowHeight/2)-110, 40, 60); sheep poster
+        //rect((windowWidth/2)-100, (windowHeight/2)+50, 60, 40); water location
 
+        changeCursor2();
+        if(hallwayDone==true){
+            image(solvedHallway, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+            textSize(16);
+            fill('black');
+            text('To Hotel Room',900,630);
+            rm1Arrow();
+        }
+
+        else{
+            image(room2, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+            textSize(16);
+            fill('black');
+            text('To Hotel Room',900,630);
+            rm1Arrow();
+        }
         
-        if(showAxe==true){
+         if(showAxe==true){
             image(axePhoto,(windowWidth/2)+40, (windowHeight/2)-100, 300, 250);
             if(axeTaken==true){
                 image(axeGone,(windowWidth/2)+40, (windowHeight/2)-100, 300, 250);
@@ -195,50 +227,105 @@ function draw() {
 
         else if(wrongDoor==true){
             image(gameOver,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+
+            if(playAgain==true){
+                replay();
+             }
         }
 
-        if(playAgain==true){
-            clicks1=0;
-            clicks2=0;
-            clicks3=0;
-            inRoom1=true;
-            isBoxSolved= false;
-            puzzleDone=false;
-            keyTaken= false;
-            timesLeft=0;
-            playAgain= false;
+        else if(isSheepClicked==true){
+                image(newZealandClue,(windowWidth/2)-225, (windowHeight/2)-125, 450, 250);
+                arrow();
+            }
+
+        else if(isWaterClicked==true){
+            image(greenlandClue,(windowWidth/2)-225, (windowHeight/2)-125, 450, 250);
+            arrow();
         }
+
+        
     }
 
-    else if (inRoom3==true){
+    else if (inRoom3){
+        changeCursor3();
         image(room3,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
         if(boilerMessage==true){
             image(boilerHint,(windowWidth/2)-110, (windowHeight/2)-100, 200, 250);
             arrow();
         }
+
+        if(vaultPress==true){
+            image(vaultPuzzle,(windowWidth/2)-150, (windowHeight/2)-140, 500, 400);
+            //rect((windowWidth/2)-45, (windowHeight/2)-120, 40, 60);
+            //rect((windowWidth/2)-45, (windowHeight/2)-25, 40, 60);
+            //rect((windowWidth/2)-45, (windowHeight/2)+70, 40, 60);
+            //rect((windowWidth/2)-45, (windowHeight/2)+170, 40, 60);
+
+            //rect((windowWidth/2)+200, (windowHeight/2)-120, 40, 60);
+            //rect((windowWidth/2)+200, (windowHeight/2)-25, 40, 60);
+            //rect((windowWidth/2)+200, (windowHeight/2)+70, 40, 60);
+            //rect((windowWidth/2)+200, (windowHeight/2)+170, 40, 60);
+
+            fill('red');
+            textSize(50);
+            text(firstSet[letters1],(windowWidth/2)+80,(windowHeight/2)-70);
+            text(secondSet[letters2],(windowWidth/2)+80,(windowHeight/2)+20);
+            text(thirdSet[letters3],(windowWidth/2)+80,(windowHeight/2)+120);
+            text(fourthSet[letters4],(windowWidth/2)+80,(windowHeight/2)+220);
+
+             if(letters1==0 && letters2==0 && letters3==1 && letters4==7){
+                vaultOpen= true;
+            }
+            arrow();
+        }
         
     }
     
-    
-  
-
     if(backButton==true){
-        isPlantClicked=false;
-        isMapPress= false;
-        isBoxPress=false;
-        isBoxSolved= false;
-
-        boardedDoor= false;
-        wrongDoor= false;
-        waterPress= false;
-        exitPress= false;
-        showAxe= false;
-
-        boilerMessage= false;
-
-        backButton=false;
+        back();
     }
-   
+}
+
+
+function boxPuzzle(){
+    if(mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
+        clicks1++;
+        if(clicks1==input.length){
+            clicks1=0;
+        }    
+} 
+    else if(mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
+        clicks1--;
+        if(clicks1<0){
+            clicks1=7;
+        }
+    }
+
+    if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
+        clicks2++;
+        if(clicks2==input.length){
+            clicks2=0;
+        }    
+    } 
+    else if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
+        clicks2--;
+        if(clicks2<0){
+            clicks2=7;
+        }
+    }
+
+    if(mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
+            clicks3++;
+            if(clicks3==input.length){
+                clicks3=0;
+            }    
+        } 
+    else if(mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
+            clicks3--;
+            if(clicks3<0){
+                clicks3=7;
+            }
+        } 
 }
 
 function mouseClicked(){
@@ -257,8 +344,7 @@ function mouseClicked(){
         }
     }
 }
-function mousePressed(){
- if(inRoom1){
+function bedroom(){
         if(puzzleDone==false){
             if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
                 alert("Locked!");
@@ -267,6 +353,7 @@ function mousePressed(){
          else if(puzzleDone==true){
             if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
                 inRoom1=false;
+                inRoom3= false;
                 inRoom2=true;
                 morseCode.stop(inRoom1=false)
                 timesLeft++;
@@ -287,44 +374,7 @@ function mousePressed(){
         }
 
         if(isBoxPress==true){
-            if(mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
-                clicks1++;
-                if(clicks1==input.length){
-                    clicks1=0;
-                }    
-        } 
-        else if(mouseX>=(windowWidth/2)-56 && mouseX<=(windowWidth/2)-21 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
-            clicks1--;
-            if(clicks1<0){
-                clicks1=7;
-            }
-        }
-
-        if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
-            clicks2++;
-            if(clicks2==input.length){
-                clicks2=0;
-            }    
-        } 
-        else if(mouseX>=(windowWidth/2)-8 && mouseX<=(windowWidth/2)+27 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
-                clicks2--;
-                if(clicks2<0){
-                    clicks2=7;
-                }
-            }
-
-        if(mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)-10 && mouseY<=(windowHeight/2)+20){
-                    clicks3++;
-                    if(clicks3==input.length){
-                        clicks3=0;
-                    }    
-                } 
-        else if(mouseX>=(windowWidth/2)+42 && mouseX<=(windowWidth/2)+77 && mouseY>=(windowHeight/2)+45 && mouseY<=(windowHeight/2)+55){
-                    clicks3--;
-                    if(clicks3<0){
-                        clicks3=7;
-                    }
-                } 
+            boxPuzzle();
         }
         if(puzzleDone){
              //rect((windowWidth/2),(windowHeight/2)-10,80,50);
@@ -334,82 +384,190 @@ function mousePressed(){
             }
         }
 }
-       
-else if(inRoom2){
-    if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
-        inRoom1=true;
-        inRoom2= false;
-    }
-    if(isSheepClicked==true){
-      
-        if(mouseX>=(windowWidth/2)+60 && mouseX<=(windowWidth/2)+140 && mouseY>=(windowHeight/2)-100 && mouseY<=(windowHeight/2)+120){
-            image(newZealandFlag,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550 )
-        }
-    }
-         //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
-        //rect((windowWidth/2)-520, (windowHeight/2)-650, 100,300); axe door
-        //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
-        //rect((windowWidth/2)-790, (windowHeight/2)-650, 100,170); exit door
 
-        //translate(730,500);
-    if(mouseX>=(windowWidth/2)-310 && mouseX<=(windowWidth/2)-235 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
-        boardedDoor=true;
-        if(axeTaken==false){
-            alert("It's boarded up. We should find a way to open it");
-        }
-
-        else if(axeTaken==true){
+function hallway(){
+        if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
+            inRoom1=true;
             inRoom2= false;
-            inRoom3=true;
         }
-            
-    }
-
-    else if(mouseX>=(windowWidth/2)+210 && mouseX<=(windowWidth/2)+310 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
-        showAxe= true;
-    }
-
-    else if(showAxe==true){
-        if(mouseX>=(windowWidth/2)+120 && mouseX<=(windowWidth/2)+220 && mouseY>=(windowHeight/2)-20 && mouseY<=(windowHeight/2)+10){
-            axeTaken= true;
-        }
-    }
-
-    else if(mouseX>=(windowWidth/2)+110 && mouseX<=(windowWidth/2)+160 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)+60){
-        wrongDoor= true;
-    }
-
-    else if(wrongDoor==true){
-        //rect((windowWidth/2)-320, (windowHeight/2)+150, 130, 70);
-        if(mouseX>=(windowWidth/2)-320 && mouseX<=(windowWidth/2)-190 && mouseY>=(windowHeight/2)+150 && mouseY<=(windowHeight/2)+220){
-            playAgain=true;
-        }
-    }
-
-    else if(mouseX>=(windowWidth/2)-60 && mouseX<=(windowWidth/2)+40 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+20){
-        exitPress= true;
-        alert("Nope! Locked tight!");
-    }
-}
-
-else if(inRoom3){
-     //rect((windowWidth/2)-150, (windowHeight/2)-210, 150,95);
-     if(mouseX>=(windowWidth/2)-150 && mouseX<=(windowWidth/2) && mouseY>=(windowHeight/2)-210 && mouseY<=(windowHeight/2)-115){
-         inRoom2=true;
-         inRoom3=false;
-     }
-//rect((windowWidth/2)-220, (windowHeight/2)+40, 50,60);
-     else if(mouseX>=(windowWidth/2)-220 && mouseX<=(windowWidth/2)-170 && mouseY>=(windowHeight/2)+40 && mouseY<=(windowHeight/2)+100){
-         boilerMessage=true;
-     }
-}
- 
-if((mouseX>=430 && mouseX<=464 && mouseY>=116 && mouseY<=189) ||(mouseX>=464 && mouseX<=540 && mouseY>=143 && mouseY<=162)){
-    backButton=true;
-}
+        
+        if(mouseX>=(windowWidth/2)-310 && mouseX<=(windowWidth/2)-235 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
+            boardedDoor=true;
+            if(axeTaken==false){
+                alert("It's boarded up. We should find a way to open it");
+            }
     
+            else if(axeTaken==true){
+                hallwayDone= true;
+                timesExitedHallway++;
+                if(timesExitedHallway>1){
+                    inRoom2= false;
+                    inRoom3=true;
+                }
+            }
+        }
+    
+        else if(mouseX>=(windowWidth/2)+210 && mouseX<=(windowWidth/2)+310 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
+            showAxe= true;
+        }
+    
+        else if(showAxe==true){
+            if(mouseX>=(windowWidth/2)+120 && mouseX<=(windowWidth/2)+220 && mouseY>=(windowHeight/2)-20 && mouseY<=(windowHeight/2)+10){
+                axeTaken= true;
+            }
+        }
+    
+        if(mouseX>=(windowWidth/2)+110 && mouseX<=(windowWidth/2)+160 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)+60){
+            wrongDoor= true;
+        }
+    
+        if(wrongDoor==true){
+            //rect((windowWidth/2)-320, (windowHeight/2)+150, 130, 70);
+            if(mouseX>=(windowWidth/2)-320 && mouseX<=(windowWidth/2)-190 && mouseY>=(windowHeight/2)+150 && mouseY<=(windowHeight/2)+220){
+                playAgain=true;
+            }
+        }
+    
+        if(mouseX>=(windowWidth/2)-60 && mouseX<=(windowWidth/2)+40 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+20){
+            exitPress= true;
+            alert("Nope! Locked tight!");
+        }
+        //rect((windowWidth/2)-200, (windowHeight/2)-110, 40, 60);
+        else if(mouseX>=(windowWidth/2)-200 && mouseX<=(windowWidth/2)-160 && mouseY>=(windowHeight/2)-110 && mouseY<=(windowHeight/2)-50){
+            isSheepClicked= true; 
+        }
+        //rect((windowWidth/2)-100, (windowHeight/2)+50, 60, 40);
+        else if(mouseX>=(windowWidth/2)-100 && mouseX<=(windowWidth/2)-40 && mouseY>=(windowHeight/2)+50 && mouseY<=(windowHeight/2)+90){
+            isWaterClicked= true;
+        }
+}
+
+function basement(){
+        //rect((windowWidth/2)-150, (windowHeight/2)-210, 150,95);
+        if(mouseX>=(windowWidth/2)-150 && mouseX<=(windowWidth/2) && mouseY>=(windowHeight/2)-210 && mouseY<=(windowHeight/2)-115){
+            inRoom2=true;
+            inRoom1= false;
+            inRoom3=false;
+        }
+   //rect((windowWidth/2)-220, (windowHeight/2)+40, 50,60);
+        else if(mouseX>=(windowWidth/2)-220 && mouseX<=(windowWidth/2)-170 && mouseY>=(windowHeight/2)+40 && mouseY<=(windowHeight/2)+100){
+            boilerMessage=true;
+        }
+
+        else if(mouseX>=(windowWidth/2)-150 && mouseX<=(windowWidth/2)+275 && mouseY>=(windowHeight/2)-90 && mouseY<=(windowHeight/2)+110){
+            vaultPress=true;
+            vault();
+        }
+   }
+
+   function vault(){
+    if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-60){
+        letters1++;
+        if(letters1==firstSet.length){
+            letters1=0;
+        }    
+    } 
+    else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-60){
+        letters1--;
+        if(letters1<0){
+            letters1=5;
+        }
+    }
+
+    if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)-25 && mouseY<=(windowHeight/2)+35){
+        letters2++;
+        if(letters2==secondSet.length){
+            letters2=0;
+        }    
+    } 
+    else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)-25 && mouseY<=(windowHeight/2)+35){
+        letters2--;
+        if(letters2<0){
+            letters2=5;
+        }
+    }
+
+    if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)+70 && mouseY<=(windowHeight/2)+130){
+            letters3++;
+            if(letters3==thirdSet.length){
+                letters3=0;
+            }    
+        } 
+    else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+70 && mouseY<=(windowHeight/2)+130){
+            letters3--;
+            if(letters3<0){
+                letters3=5;
+            }
+        } 
+    
+        if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230){
+            letters4++;
+            if(letters4==fourthSet.length){
+                letters4=0;
+            }    
+        } 
+    
+        else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230){
+            letters4--;
+            if(letters4<0){
+                letters4=6;
+            }
+        } 
+   }
 
    
+function mousePressed(){
+    if(inRoom1){
+        bedroom();
+    }
+    
+    else if(inRoom2){
+        hallway();
+    }
+
+    else if(inRoom3){
+        basement();
+    }
+
+    if((mouseX>=430 && mouseX<=464 && mouseY>=116 && mouseY<=189) ||(mouseX>=464 && mouseX<=540 && mouseY>=143 && mouseY<=162)){
+        backButton=true;
+    }
+
+}
+    
+   
+function replay(){
+    clicks1=0;
+    clicks2=0;
+    clicks3=0;
+    inRoom1=true;
+    isBoxSolved= false;
+    puzzleDone=false;
+    keyTaken= false;
+    timesLeft=0;
+    timesExitedHallway=0;
+    axeTaken= false;
+    hallwayDone= false;
+    playAgain= false;
+}
+
+function back(){
+    isPlantClicked=false;
+    isMapPress= false;
+    isBoxPress=false;
+    isBoxSolved= false;
+
+    boardedDoor= false;
+    wrongDoor= false;
+    isWaterClicked= false;
+    isSheepClicked=false;
+    exitPress= false;
+    showAxe= false;
+
+    boilerMessage= false;
+    vaultPress=false;
+
+    backButton=false;
 }
 
 function arrow(){
@@ -442,22 +600,9 @@ translate(730,500);
   translate(-730,-500);
 }
 
-function changeCursor(){
+function changeCursor1(){
 
-    //(windowWidth/2)-350, (windowHeight/2)-275
-    //413, 157
-    //windowWidth:1526
-    //windowHeight:864
-
-    /*if (inIntroPage){
-
-        if(mouseX>=(windowWidth/2)-120 && mouseX<=(windowWidth/2)-83 && mouseY>=(windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
-        cursor(HAND);
-        }
-    }*/
-    if(inRoom1){
-
-       if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
+    if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
             cursor(HAND);
         }
             //rect(457,310,35,10); 
@@ -495,18 +640,74 @@ function changeCursor(){
             cursor(ARROW);
         }
     }
+    
+function changeCursor2(){    
+    if((mouseX>=910 && mouseX<=986 && mouseY>=563 && mouseY<=582) ||(mouseX>=986 && mouseX<=1020 && mouseY>=536 && mouseY<=609)){
+        cursor(HAND);
+    }
+    
+    else if(mouseX>=(windowWidth/2)-310 && mouseX<=(windowWidth/2)-235 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
+        cursor(HAND);
+    }
 
-    else if(inRoom2){
-        if((mouseX>=(windowWidth/2)+155 && mouseX<=(windowWidth/2)+300 && mouseY>= (windowHeight/2)+165 && mouseY<=(windowHeight/2)+185) ||(mouseX>=(windowWidth/2)+300 && mouseX<=(windowWidth/2)+380 && mouseY>=(windowHeight/2)+185 && mouseY<=(windowHeight/2)+230)){
+    else if(mouseX>=(windowWidth/2)+210 && mouseX<=(windowWidth/2)+310 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+150){
+        cursor(HAND);
+    }
+
+    else if(mouseX>=(windowWidth/2)+120 && mouseX<=(windowWidth/2)+220 && mouseY>=(windowHeight/2)-20 && mouseY<=(windowHeight/2)+10){
             cursor(HAND);
         }
-        /*if(mouseX>=(windowWidth/2)-278 && mouseX<=(windowWidth/2)-243 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-105){
+
+    else if(mouseX>=(windowWidth/2)+110 && mouseX<=(windowWidth/2)+160 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)+60){
+        cursor(HAND);
+    }
+
+    
+    else if(mouseX>=(windowWidth/2)-320 && mouseX<=(windowWidth/2)-190 && mouseY>=(windowHeight/2)+150 && mouseY<=(windowHeight/2)+220){
             cursor(HAND);
-        }*/
+        }
+    
+
+    else if(mouseX>=(windowWidth/2)-60 && mouseX<=(windowWidth/2)+40 && mouseY>=(windowHeight/2)-150 && mouseY<=(windowHeight/2)+20){
+        cursor(HAND);
+    }
+
+    else if(mouseX>=(windowWidth/2)-278 && mouseX<=(windowWidth/2)-243 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-105){
+        cursor(HAND);
+    }
+
+    else if((mouseX>=(windowWidth/2)+155 && mouseX<=(windowWidth/2)+300 && mouseY>= (windowHeight/2)+165 && mouseY<=(windowHeight/2)+185) ||(mouseX>=(windowWidth/2)+300 && mouseX<=(windowWidth/2)+380 && mouseY>=(windowHeight/2)+185 && mouseY<=(windowHeight/2)+230)){
+            cursor(HAND);
+        }
+
+    else if(mouseX>=(windowWidth/2)-200 && mouseX<=(windowWidth/2)-160 && mouseY>=(windowHeight/2)-110 && mouseY<=(windowHeight/2)-50){
+            cursor(HAND);
+        }
+
+    else if(mouseX>=(windowWidth/2)-100 && mouseX<=(windowWidth/2)-40 && mouseY>=(windowHeight/2)+50 && mouseY<=(windowHeight/2)+90){
+            cursor(HAND);
+        }
 
         else{
             cursor(ARROW);
         }
-    }
-    
 }
+
+function changeCursor3(){
+    if(mouseX>=(windowWidth/2)-150 && mouseX<=(windowWidth/2) && mouseY>=(windowHeight/2)-210 && mouseY<=(windowHeight/2)-115){
+        cursor(HAND);
+    }
+//rect((windowWidth/2)-220, (windowHeight/2)+40, 50,60);
+    else if(mouseX>=(windowWidth/2)-220 && mouseX<=(windowWidth/2)-170 && mouseY>=(windowHeight/2)+40 && mouseY<=(windowHeight/2)+100){
+        cursor(HAND);
+    }
+
+    else if(mouseX>=(windowWidth/2)+125 && mouseX<=(windowWidth/2)+275 && mouseY>=(windowHeight/2)-90 && mouseY<=(windowHeight/2)+110){
+        cursor(HAND);
+    }
+
+    else{
+        cursor(ARROW);
+    }
+}
+
