@@ -1,6 +1,13 @@
-let inRoom1= false;
+let Scream;
+let endTheme;
+
+
+let inRoom1= true;
 let inRoom2= false;
-let inRoom3= true;
+let inRoom3= false;
+
+//introPage
+let isClicked=false;
 
 //room 1
 let isMapPress= false;
@@ -64,9 +71,30 @@ function setup() {
     print(screen.width); //1536px
     print(screen.height); //864px
 
-    morseCode= createAudio('images/Escape theme one.wav');
-    //morseCode.loop();
+
+    /*buttonPlayMusic = createButton('Congratulations!');
+    buttonPlayMusic.position(50, 550);
+    buttonPlayMusic.size(200,100);
+    buttonPlayMusic.style("font-family", "Bodoni");
+    buttonPlayMusic.style("font-size", "30px");
+    buttonPlayMusic.style("color","#FC7651");
+    buttonPlayMusic.style("background-color","#FFDB60");
+    buttonPlayMusic.mousePressed(endMusic);*/
+
+    fill('red')
+    textSize(30)
+    text('Open your ears and eyes...', 330, 50);
+    text('And Make It Out Alive',700,50 );
     
+    button = createButton('Click');
+    button.position(1120, 550);
+    button.size(200,100);
+    button.style("font-family", "Bodoni");
+    button.style("font-size", "36px");
+    button.style("color","red");
+    button.style("background-color","#252B42");
+    button.mousePressed(startMusic);
+     
     room1.loadPixels();
     paper.loadPixels();
     map.loadPixels();
@@ -84,11 +112,26 @@ function setup() {
     room3.loadPixels();
     boilerHint.loadPixels();
 
+    morseCode= createAudio('Images/Escape theme one.wav');
+    Scream= createAudio('Images/scream.wav');
+    endTheme= createAudio('Images/bensound-ukulele.mp3');
+
     
 }
 
+/*function endMusic() {
+    let bg = ('color','#252B42')
+    buttonPlayMusic.style("background-color",bg);
+    buttonPlayMusic.style("color",bg);
+    endTheme.play();
+ }*/
+
+function startMusic() {
+    morseCode.play();
+
+}
+
 function draw() {
-    
     changeCursor();
     if(inRoom1==true){
         image(room1, (windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
@@ -150,9 +193,8 @@ function draw() {
         fill('black');
         text('To Hotel Room',900,630);
         rm1Arrow();
-        fill('red')
-        rect((windowWidth/2)-1030, (windowHeight/2)-700,130,70)
-        //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300); boarded door
+        
+        //rect((windowWidth/2)-1040, (windowHeight/2)-650, 75,300);boarded door
         //rect((windowWidth/2)-520, (windowHeight/2)-650, 100,300); axe door
         //rect((windowWidth/2)-620, (windowHeight/2)-620, 50,180); wrong door
         //rect((windowWidth/2)-790, (windowHeight/2)-650, 100,170); exit door
@@ -215,7 +257,22 @@ function draw() {
 }
 
 function mousePressed(){
-  if(inRoom1){
+/*if(morseCode.isPlaying()){
+   morseCode.stop();
+   inRoom1=false;
+}else{
+    morseCode.play();
+    inRoom1=true
+}
+if(Scream.isPlaying()){
+   Scream.stop();
+   puzzleDone=false
+}else{
+    Scream.play();
+    puzzleDone=true
+}*/
+
+ if(inRoom1){
         if(puzzleDone==false){
             if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
                 alert("Locked!");
@@ -225,11 +282,12 @@ function mousePressed(){
             if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
                 inRoom1=false;
                 inRoom2=true;
-                
+                morseCode.stop(inRoom1=false)
                 timesLeft++;
 
                 if(timesLeft==1){
                     alert("Oh God, what a mess!");
+                    Scream.play();
                 }
                
             }
@@ -411,6 +469,12 @@ function changeCursor(){
     //windowWidth:1526
     //windowHeight:864
 
+    /*if (inIntroPage){
+
+        if(mouseX>=(windowWidth/2)-120 && mouseX<=(windowWidth/2)-83 && mouseY>=(windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
+        cursor(HAND);
+        }
+    }*/
     if(inRoom1){
 
        if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
