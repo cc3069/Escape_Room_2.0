@@ -43,7 +43,7 @@ let timesLeft=0;
 
  //room 4
 let endTheme;
-let congrantulationisPlaying=false;
+let congratulationisPlaying=false;
 
  //vault puzzle
  let letters1=0;
@@ -109,8 +109,8 @@ function setup() {
     room3.loadPixels();
     boilerHint.loadPixels();
     vaultPuzzle.loadPixels();
+    
     morseCode= createAudio('Images/Escape theme one.wav');
-    Scream= createAudio('Images/scream.wav');
     endTheme= createAudio('Images/bensound-ukulele.mp3');
       
 }
@@ -486,17 +486,18 @@ function basement(){
         else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230){
             letters4--;
             if(letters4<0){
-                letters4=6;
+                letters4=7;
             }
         } 
    }
 
  function endingPage(){
- 
-    background("#209b85");
     fill('#ffbd59')
     rect((windowWidth/2)-350, (windowHeight/2)-275, 700, 550)
-    text("Yay!How does it feel to escape the room?")
+    textSize(30)
+    textAlign(CENTER, CENTER);
+
+    text("Yay!How does it feel to escape the room?",)
     buttonPlayMusic = createButton('Congratulations!');
     buttonPlayMusic.position(50, 550);
     buttonPlayMusic.size(200,100);
@@ -511,9 +512,6 @@ function basement(){
  } 
 
  function endMusic() {
-    let bg = ('color','#252B42')
-    buttonPlayMusic.style("background-color",bg);
-    buttonPlayMusic.style("color",bg);
     endTheme.play();
  }
 function mousePressed(){
