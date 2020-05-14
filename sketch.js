@@ -337,22 +337,6 @@ function boxPuzzle(){
         } 
 }
 
-function mouseClicked(){
-if(mouseX >= +350 && mouseX <= width && mouseY >= (windowHeight/2)+ && mouseY <= height){
-        background('#252B42')
-        if(morseCodeisPlaying){
-            morseCode.stop();
-            morseCodeisPlaying=false
-            fill('red')
-            text('Play Again',300, 700)
-        } else{
-            morseCode.loop();
-            morseCodeisPlaying=true;
-            fill('red')
-            text('Make It Stop!!',300, 700)
-        }
-    }
-}
 function bedroom(){
         if(puzzleDone==false){
             if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
@@ -569,6 +553,26 @@ function mousePressed(){
         backButton=true;
     }
 
+    if(mouseX >= 0 && mouseX <= width && mouseY >=0 && mouseY <= (windowHeight/2)-275
+    ||mouseX >= 0 && mouseX <= width && mouseY >= (windowHeight/2)+275 && mouseY <= height){
+        audio();
+
+    }
+}
+
+function audio(){
+    background('#252B42')
+        if(morseCodeisPlaying){
+            morseCode.stop();
+            morseCodeisPlaying=false;
+            fill('red')
+            text('Play Music!', 300, 700)
+        } else{
+            morseCode.loop();
+            morseCodeisPlaying=true;
+            fill('red')
+            text('Make It Stop!!',950, 700)
+        }
 }
     
    
