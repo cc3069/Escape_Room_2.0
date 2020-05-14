@@ -112,8 +112,8 @@ function setup() {
     room3.loadPixels();
     boilerHint.loadPixels();
     vaultPuzzle.loadPixels();
+    
     morseCode= createAudio('Images/Escape theme one.wav');
-    //Scream= createAudio('Images/scream.wav');
     endTheme= createAudio('Images/bensound-ukulele.mp3');
     congrats.loadPixels();
       
@@ -259,16 +259,15 @@ function draw() {
             text(thirdSet[letters3],(windowWidth/2)+80,(windowHeight/2)+120);
             text(lastSet[letters4],(windowWidth/2)+80,(windowHeight/2)+220);
 
-             if(letters1==0 && letters2==0 && letters3==1 && letters4==7){
-                vaultOpen= true;
-            }
             arrow();
-        }
-
-        if(vaultOpen){
-            image(congrats,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+            
+            if(letters1==0 && letters2==0 && letters3==1 && letters4==7){
+                vaultOpen= true;
+                translate(-250,-80);
+                image(congrats,(windowWidth/2)-350, (windowHeight/2)-275, 700, 550);
+                
                 buttonEndGame = createButton('Finished?');
-                buttonEndGame.position(50, 550);
+                buttonEndGame.position(1200, 550);
                 buttonEndGame.size(200,100);
                 buttonEndGame.style("font-family", "Bodoni");
                 buttonEndGame.style("font-size", "30px");
@@ -284,8 +283,12 @@ function draw() {
                 buttonEndGame.style("color","#FC7651");
                 buttonEndGame.style("background-color","#FFDB60");
                 buttonEndGame.mousePressed(replay);
+
+                
+                
         }
-        
+                
+        }
     }
     
     if(backButton==true){
@@ -510,11 +513,9 @@ function basement(){
    }
 
  function endingPage(){
- 
     background("#209b85");
     fill('#ffbd59')
-    rect((windowWidth/2)-350, (windowHeight/2)-275, 700, 550)
-    text("Yay! How does it feel to escape the room?", (windowWidth/2)-600, (windowHeight/2)-400)
+    text("Yay! How does it feel to escape the room?", (windowWidth/2)-400, (windowHeight/2)-300)
     buttonPlayMusic = createButton('Congratulations!');
     buttonPlayMusic.position(50, 550);
     buttonPlayMusic.size(200,100);
@@ -527,9 +528,6 @@ function basement(){
  } 
 
  function endMusic() {
-    let bg = ('color','#252B42')
-    buttonPlayMusic.style("background-color",bg);
-    buttonPlayMusic.style("color",bg);
     endTheme.play();
  }
 
