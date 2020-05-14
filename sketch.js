@@ -338,7 +338,7 @@ function boxPuzzle(){
 }
 
 function mouseClicked(){
-if(mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height){
+if(mouseX >= +350 && mouseX <= width && mouseY >= (windowHeight/2)+ && mouseY <= height){
         background('#252B42')
         if(morseCodeisPlaying){
             morseCode.stop();
@@ -540,8 +540,8 @@ function basement(){
     buttonPlayMusic.mousePressed(endMusic);
     
     replay()
-    */
- }  
+    
+ } */ 
 
  /*function endMusic() {
     let bg = ('color','#252B42')
