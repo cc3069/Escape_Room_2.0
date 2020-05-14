@@ -1,7 +1,7 @@
-let inRoom1= true;
+let inRoom1= false;
 let inRoom2= false;
-let inRoom3= false;
-
+let inRoom3= true;
+let inRoom4=false;
 //room 1
 let isMapPress= false;
 let isDoorPress= false;
@@ -12,9 +12,7 @@ let keyTaken= false;
 let isPlantClicked= false;
 let backButton= false;
 let morseCode;
-let Scream;
 let morseCodeisPlaying=false;
-let screamisPlaying=false;
 let timesLeft=0;
 
 //box puzzle
@@ -42,8 +40,10 @@ let timesLeft=0;
  let vaultPress= false;
  let vaultOpen=false;
  let hallwayRoute= false;
- let endTheme;
-let congratulationisPlaying=false;
+
+ //room 4
+let endTheme;
+let congrantulationisPlaying=false;
 
  //vault puzzle
  let letters1=0;
@@ -93,6 +93,15 @@ function setup() {
     buttonPlayMusic.style("color","#FC7651");
     buttonPlayMusic.style("background-color","#FFDB60");
     buttonPlayMusic.mousePressed(endMusic);*/
+
+    /*buttonEndGame = createButton('Finished?');
+    buttonEndGame.position(50, 550);
+    buttonEndGame.size(200,100);
+    buttonEndGame.style("font-family", "Bodoni");
+    buttonEndGame.style("font-size", "30px");
+    buttonEndGame.style("color","#FC7651");
+    buttonEndGame.style("background-color","#FFDB60");
+    buttonEndGame.mousePressed(endMusic);*/
 
     fill('red')
     textSize(30)
@@ -328,7 +337,6 @@ function boxPuzzle(){
         } 
 }
 
-
 function bedroom(){
         if(puzzleDone==false){
             if(mouseX>= (windowWidth/2)+207 && mouseX<=(windowWidth/2)+287 && mouseY>= (windowHeight/2)-130 && mouseY<=(windowHeight/2)+80){
@@ -340,7 +348,6 @@ function bedroom(){
                 inRoom1=false;
                 inRoom3= false;
                 inRoom2=true;
-                morseCode.stop(inRoom1=false)
                 timesLeft++;
              }
         }
@@ -433,6 +440,7 @@ function basement(){
             inRoom2=true;
             inRoom1= false;
             inRoom3=false;
+            inRoom4=false;
         }
    //rect((windowWidth/2)-220, (windowHeight/2)+40, 50,60);
         else if(mouseX>=(windowWidth/2)-220 && mouseX<=(windowWidth/2)-170 && mouseY>=(windowHeight/2)+40 && mouseY<=(windowHeight/2)+100){
@@ -500,7 +508,31 @@ function basement(){
         } 
    }
 
-   
+ function endingPage(){
+/* 
+    background("#209b85");
+    fill('#ffbd59')
+    rect((windowWidth/2)-350, (windowHeight/2)-275, 700, 550)
+    text("Yay!How does it feel to escape the room?")
+    buttonPlayMusic = createButton('Congratulations!');
+    buttonPlayMusic.position(50, 550);
+    buttonPlayMusic.size(200,100);
+    buttonPlayMusic.style("font-family", "Bodoni");
+    buttonPlayMusic.style("font-size", "30px");
+    buttonPlayMusic.style("color","#FC7651");
+    buttonPlayMusic.style("background-color","#FFDB60");
+    buttonPlayMusic.mousePressed(endMusic);
+    
+    replay()
+    */
+ }  
+
+ /*function endMusic() {
+    let bg = ('color','#252B42')
+    buttonPlayMusic.style("background-color",bg);
+    buttonPlayMusic.style("color",bg);
+    endTheme.play();
+ }*/
 function mousePressed(){
     if(inRoom1){
         bedroom();
@@ -512,6 +544,9 @@ function mousePressed(){
 
     else if(inRoom3){
         basement();
+    }
+    else if(inRoom4){
+        endingPage();
     }
 
     if((mouseX>=430 && mouseX<=464 && mouseY>=116 && mouseY<=189) ||(mouseX>=464 && mouseX<=540 && mouseY>=143 && mouseY<=162)){
@@ -715,4 +750,6 @@ function changeCursor3(){
         cursor(ARROW);
     }
 }
+
+
 
