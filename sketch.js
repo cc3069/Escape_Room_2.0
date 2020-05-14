@@ -1,6 +1,6 @@
-let inRoom1= false;
+let inRoom1= true;
 let inRoom2= false;
-let inRoom3= true;
+let inRoom3= false;
 let inRoom4=false;
 //room 1
 let isMapPress= false;
@@ -259,7 +259,7 @@ function draw() {
              if(letters1==0 && letters2==0 && letters3==1 && letters4==7){
                 vaultOpen= true;
                 buttonEndGame = createButton('Finished?');
-                buttonEndGame.position(50, 550);
+                buttonEndGame.position(1050, 550);
                 buttonEndGame.size(200,100);
                 buttonEndGame.style("font-family", "Bodoni");
                 buttonEndGame.style("font-size", "30px");
@@ -495,12 +495,9 @@ function basement(){
    }
 
  function endingPage(){
-    fill('#ffbd59')
-    rect((windowWidth/2)-350, (windowHeight/2)-275, 700, 550)
     textSize(30)
     textAlign(CENTER, CENTER);
-
-    text("Yay!How does it feel to escape the room?",)
+    text("Yay!How does it feel to escape the room?",330, 50)
     buttonPlayMusic = createButton('Congratulations!');
     buttonPlayMusic.position(50, 550);
     buttonPlayMusic.size(200,100);
@@ -509,8 +506,6 @@ function basement(){
     buttonPlayMusic.style("color","#FC7651");
     buttonPlayMusic.style("background-color","#FFDB60");
     buttonPlayMusic.mousePressed(endMusic);
-    
-    replay()
     
  } 
 
