@@ -50,6 +50,7 @@ let congratulationisPlaying=false;
  let letters2=0;
  let letters3=0;
  let letters4=0;
+
  let firstSet=['A','B','C','D','E','F'];
  let secondSet=['G','H','I','J','K','L'];
  let thirdSet=['M','N','O','P','Q','R'];
@@ -237,7 +238,8 @@ function draw() {
 
         if(vaultPress==true){
             image(vaultPuzzle,(windowWidth/2)-150, (windowHeight/2)-140, 500, 400);
-            //rect((windowWidth/2)-45, (windowHeight/2)-120, 40, 60);
+
+            //rect((windowWidth/2)-45, (windowHeight/2)-120, 40, 60); vault arrow coordinates
             //rect((windowWidth/2)-45, (windowHeight/2)-25, 40, 60);
             //rect((windowWidth/2)-45, (windowHeight/2)+70, 40, 60);
             //rect((windowWidth/2)-45, (windowHeight/2)+170, 40, 60);
@@ -469,6 +471,7 @@ function basement(){
                 letters3=0;
             }    
         } 
+        
     else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+70 && mouseY<=(windowHeight/2)+130){
             letters3--;
             if(letters3<0){
@@ -476,7 +479,7 @@ function basement(){
             }
         } 
     
-        if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230){
+    if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230){
             letters4++;
             if(letters4==fourthSet.length){
                 letters4=0;
@@ -486,7 +489,7 @@ function basement(){
         else if(mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230){
             letters4--;
             if(letters4<0){
-                letters4=7;
+                   letters4=7;
             }
         } 
    }
@@ -724,6 +727,18 @@ function changeCursor3(){
     }
 
     else if(mouseX>=(windowWidth/2)+125 && mouseX<=(windowWidth/2)+275 && mouseY>=(windowHeight/2)-90 && mouseY<=(windowHeight/2)+110){
+        cursor(HAND);
+    }
+
+    else if(mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-60//right top
+    ||mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)-25 && mouseY<=(windowHeight/2)+35 //right second
+    ||mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)+70 && mouseY<=(windowHeight/2)+130 //right third
+    ||mouseX>=(windowWidth/2)+200 && mouseX<=(windowWidth/2)+240 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230 //right bottom
+
+    ||mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)-120 && mouseY<=(windowHeight/2)-60 //left top
+    ||mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)-25 && mouseY<=(windowHeight/2)+35 //left second
+    ||mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+70 && mouseY<=(windowHeight/2)+130 //left third
+    ||mouseX>=(windowWidth/2)-45 && mouseX<=(windowWidth/2)-5 && mouseY>=(windowHeight/2)+170 && mouseY<=(windowHeight/2)+230) { //left bottom 
         cursor(HAND);
     }
 
