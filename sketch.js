@@ -85,25 +85,6 @@ function setup() {
     print(screen.width); //1536px
     print(screen.height); //864px
 
-
-    /*buttonPlayMusic = createButton('Congratulations!');
-    buttonPlayMusic.position(50, 550);
-    buttonPlayMusic.size(200,100);
-    buttonPlayMusic.style("font-family", "Bodoni");
-    buttonPlayMusic.style("font-size", "30px");
-    buttonPlayMusic.style("color","#FC7651");
-    buttonPlayMusic.style("background-color","#FFDB60");
-    buttonPlayMusic.mousePressed(endMusic);*/
-
-    /*buttonEndGame = createButton('Finished?');
-    buttonEndGame.position(50, 550);
-    buttonEndGame.size(200,100);
-    buttonEndGame.style("font-family", "Bodoni");
-    buttonEndGame.style("font-size", "30px");
-    buttonEndGame.style("color","#FC7651");
-    buttonEndGame.style("background-color","#FFDB60");
-    buttonEndGame.mousePressed(endMusic);*/
-
     fill('red')
     textSize(30)
     text('Open your ears and eyes...', 330, 50);
@@ -134,15 +115,6 @@ function setup() {
     endTheme= createAudio('Images/bensound-ukulele.mp3');
       
 }
-
-/*function endMusic() {
-    let bg = ('color','#252B42')
-    buttonPlayMusic.style("background-color",bg);
-    buttonPlayMusic.style("color",bg);
-    endTheme.play();
- }*/
-
-
 
 function draw() {
     if(inRoom1==true){
@@ -286,8 +258,19 @@ function draw() {
 
              if(letters1==0 && letters2==0 && letters3==1 && letters4==7){
                 vaultOpen= true;
+                buttonEndGame = createButton('Finished?');
+                buttonEndGame.position(50, 550);
+                buttonEndGame.size(200,100);
+                buttonEndGame.style("font-family", "Bodoni");
+                buttonEndGame.style("font-size", "30px");
+                buttonEndGame.style("color","#FC7651");
+                buttonEndGame.style("background-color","#FFDB60");
+                buttonEndGame.mousePressed(changePG);
             }
             arrow();
+            function changePG(){
+                endingPage();
+            }
         }
         
     }
@@ -512,7 +495,7 @@ function basement(){
    }
 
  function endingPage(){
-/* 
+ 
     background("#209b85");
     fill('#ffbd59')
     rect((windowWidth/2)-350, (windowHeight/2)-275, 700, 550)
@@ -527,15 +510,15 @@ function basement(){
     buttonPlayMusic.mousePressed(endMusic);
     
     replay()
-    */
- }  
+    
+ } 
 
- /*function endMusic() {
+ function endMusic() {
     let bg = ('color','#252B42')
     buttonPlayMusic.style("background-color",bg);
     buttonPlayMusic.style("color",bg);
     endTheme.play();
- }*/
+ }
 function mousePressed(){
     if(inRoom1){
         bedroom();
